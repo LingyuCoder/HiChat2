@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HiChat2</title>
+</head>
+<body>
+	<div id="J_login">
+		账号：<input type="text" class="J_name">
+		密码：<input type="password" class="J_pwd">
+		<button class="J_submit">登录</button>
+	</div>
+
+	<div id="J_main" style="display:none">
+		detail页面
+	</div>
+
+	<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.js"></script>
+	<script type="text/javascript" src="http://cdn.staticfile.org/seajs/2.3.0/sea.js"></script>
+	<script type="text/javascript">
+		seajs.config({
+		  base: "../src/",
+		  alias: {
+		  	"jsjac": "widgets/jsjac.js",
+		  	"jquery": "widgets/jquery.js"
+		  }
+		});
+
+		seajs.use("index.js");
+	</script>
+</body>
+</html>
