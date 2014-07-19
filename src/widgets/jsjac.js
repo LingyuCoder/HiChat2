@@ -3514,7 +3514,7 @@ JSJaCConnection.prototype._handleEvent = function(event,arg) {
         else
           if (aEvent.handler.call(this)) // handled!
             break;
-      } catch (e) { console.log(e.message);this.oDbg.log(aEvent.handler+"\n>>>"+e.name+": "+ e.message,1); }
+      } catch (e) { console.error(e.stack);this.oDbg.log(aEvent.handler+"\n>>>"+e.name+": "+ e.message,1); }
     }
   }
 };

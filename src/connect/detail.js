@@ -3,17 +3,20 @@ define(function(require, exports, module) {
 	var connection = require("connect/connection");
 	var pack = require("package/detail");
 	var model = require("mods/model");
+
 	Event.on({
 		"connect.detail.getSelf": function() {
-			console.log(pack.createSelf().xml());
-			connection.getConnection().send(pack.createSelf(), {
+			connection.getConnection().sendIQ(pack.getSelf(), {
 				error_handler: function(e) {
-					console.log("error", e);
 					Event.trigger("detail.getSelf.fail");
 				},
 				result_handler: function(detail) {
-					console.log("result", detail);
-					Event.trigger("detail.getSelf.success", [pack.parse(detail)]);
+					var self = model.getSelf();
+					detail = pack.parse(detail);
+					detail.jid = self.jid;
+					detail.domain = self.domain;
+					detail.resource = self.resource;
+					Event.trigger("detail.getSelf.success", [detail]);
 				},
 				default_handler: function(e) {
 					console.log("default", e);

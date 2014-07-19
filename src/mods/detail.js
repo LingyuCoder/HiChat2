@@ -1,4 +1,4 @@
-detail(function(require, exports, module) {
+define(function(require, exports, module) {
 	var $ = require("jquery");
 	var User = require("mods/user");
 
@@ -20,6 +20,9 @@ detail(function(require, exports, module) {
 		},
 		toUser: function() {
 			return new User(this.jid + "@" + this.domain + "/" + this.resource);
-		}
+		},
+		toString: User.prototype.toString,
+		toFullString: User.prototype.toFullString
 	});
+	module.exports = Detail;
 });

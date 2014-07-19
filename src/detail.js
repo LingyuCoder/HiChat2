@@ -4,16 +4,14 @@ define(function(require, exports, module) {
 	var Event = require("event");
 	require("connect/detail");
 
-	var $el = $("#J_main");
+	var $el = $("#J_detail");
 
 	Event.on({
 		"login.success": function() {
-			console.log("getting self");
-			$el.show();
 			Event.trigger("connect.detail.getSelf");
 		},
-		"detail.getSelf.success": function(detail) {
-			console.log("asdf");
+		"detail.getSelf.success": function(event, detail) {
+			model.setDetail(detail);
 			console.log(detail);
 			//TODO: 获取个人信息成功，输出
 		},

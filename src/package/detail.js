@@ -1,13 +1,13 @@
-define(["jsjac"], function(require, exports, module) {
+define(function(require, exports, module) {
 	var $ = require("jquery");
-	var Detail = require("mods/detail");
-	var Avatar = require("mods/avatar");
 	var HomeInfo = require("mods/homeinfo");
 	var WorkInfo = require("mods/workinfo");
 	var PersonalInfo = require("mods/personalinfo");
+	var Detail = require("mods/detail");
+	var Avatar = require("mods/avatar");
 
 	module.exports = {
-		createSelf: function() {
+		getSelf: function() {
 			var aIQ = new JSJaCIQ(),
 				aVCardNode = aIQ.buildNode("vCard", {
 					"xmlns": NS_VCARD
@@ -16,7 +16,7 @@ define(["jsjac"], function(require, exports, module) {
 			aIQ.appendNode(aVCardNode);
 			return aIQ;
 		},
-		createOther: function(user) {
+		getOther: function(user) {
 			var aIQ = new JSJaCIQ(),
 				aVCardNode = aIQ.buildNode("vCard", {
 					"xmlns": NS_VCARD
@@ -30,9 +30,10 @@ define(["jsjac"], function(require, exports, module) {
 			var homeInfo,
 				workInfo,
 				personalInfo,
-				headPortrait,
+				avatar,
 				info;
-			detail = $(detail);
+			detail = $($(detail.xml()).get()[0]);
+
 			personalInfo = new PersonalInfo({
 				name: $("N GIVEN", detail).text(),
 				middleName: $("N MIDDLE", detail).text(),
@@ -56,16 +57,16 @@ define(["jsjac"], function(require, exports, module) {
 					info = homeInfo;
 				}
 				if ($("PAGER", that).length !== 0) {
-					info.setBleeper($("NUMBER", that).text());
+					info.bleeper = $("NUMBER", that).text();
 				}
 				if ($("CELL", that).length !== 0) {
-					info.setTelephone($("NUMBER", that).text());
+					info.telephone = $("NUMBER", that).text();
 				}
 				if ($("VOICE", that).length !== 0) {
-					info.setPhone($("NUMBER", that).text());
+					info.phone = $("NUMBER", that).text();
 				}
 				if ($("FAX", that).length !== 0) {
-					info.setFax($("NUMBER", that).text());
+					info.fax = $("NUMBER", that).text();
 				}
 			});
 			$("ADR", detail).each(function() {
@@ -76,14 +77,14 @@ define(["jsjac"], function(require, exports, module) {
 				} else {
 					info = homeInfo;
 				}
-				info.setPostCode($("PCODE", that).text());
-				info.setProvince($("REGION", that).text());
-				info.setStreet($("STREET", that).text());
-				info.setCountry($("CTRY", that).text());
-				info.setCity($("LOCALITY", that).text());
+				info.postCode = $("PCODE", that).text();
+				info.province = $("REGION", that).text();
+				info.street = $("STREET", that).text();
+				info.country = $("CTRY", that).text();
+				info.city = $("LOCALITY", that).text();
 			});
 
-			headPortrait = new HeadPortrait({
+			avatar = new Avatar({
 				type: $("PHOTO TYPE", detail).text(),
 				binval: $("PHOTO BINVAL", detail).text()
 			});
@@ -91,7 +92,7 @@ define(["jsjac"], function(require, exports, module) {
 				homeInfo: homeInfo,
 				workInfo: workInfo,
 				personalInfo: personalInfo,
-				headPortrait: headPortrait
+				avatar: avatar
 			});
 			return detail;
 		}
