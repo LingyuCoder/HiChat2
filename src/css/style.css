@@ -1,0 +1,124 @@
+@font-face {font-family: "iconfont";
+  src: url('../font/iconfont.eot'); /* IE9*/
+  src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('../font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+#J_main {
+	position: relative;
+}
+
+#J_main ul {
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+}
+
+#J_detail {
+	margin: 0 5px;
+	height: 48px;
+	list-style: none;
+}
+
+#J_friend {
+	height: 480px;
+	overflow: auto;
+}
+
+#J_friend .z_offline{
+	opacity: 0.5;
+}
+
+
+#J_friend li {
+	padding: 8px 32px;
+	height: 48px;
+	border-radius: 16px;
+	list-style: none;
+	cursor: pointer;
+}
+
+#J_friend li:hover {
+	background-color: #f0f0f0;
+}
+
+	#J_detail .u_avatar,
+	#J_friend li .u_avatar,
+	.g_chat_info .u_avatar {
+		float: left;
+		height: 100%;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	#J_detail .u_nick,
+	#J_friend li .u_nick,
+	.g_chat_info .u_nick {
+		height: 100%;
+		overflow: hidden;
+		text-align: center;
+		line-height: 48px;
+	}
+
+
+#J_tool {
+	height: 34px;
+}
+
+#J_tool li {
+	float: right;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 4px;
+	padding: 4px;
+	font-size: 24px;
+}
+
+	#J_tool li:hover {
+		background-color: rgb(64, 64, 64);
+		color: #fff;
+	}
+
+#J_friend_detail dt,
+#J_friend_detail dd {
+	height: 30px;
+	line-height: 30px;
+}
+
+#J_friend_detail dt {
+	float: left;
+	width: 80px;
+	text-align: right;
+}
+
+#J_friend_detail dd {
+	overflow: hidden;
+	text-align: left;
+	padding-left: 10px;
+}
+
+
+.u_msg {
+	width: 100%;
+	height: 60px;
+	display: block;
+	resize: none;
+}
+
+.g_chat_info {
+	height: 48px;
+}
+

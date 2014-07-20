@@ -9,7 +9,7 @@ define(function(require, exports, module) {
 		this.binval = oArgs.binval;
 	};
 	$.extend(Avatar.prototype, {
-		toHtmlString: function() {
+		toString: function() {
 			return 'data:' + this.type + ';base64,' + this.binval;
 		},
 		isExist: function() {

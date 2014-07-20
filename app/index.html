@@ -3,27 +3,96 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HiChat2</title>
+	<link rel="stylesheet" type="text/css" href="../src/css/jqueryui/jquery-ui-1.10.4.custom.css">
+	<link rel="stylesheet" type="text/css" href="../src/css/alertify/alertify-core.css">
+	<link rel="stylesheet" type="text/css" href="../src/css/alertify/alertify-bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../src/css/style.css">
 </head>
 <body>
 	<div id="J_login">
-		账号：<input type="text" class="J_name">
-		密码：<input type="password" class="J_pwd">
-		<button class="J_submit">登录</button>
+		<div>
+			<input placeholder="账号" type="text" value="wly" class="J_name">
+		</div>
+		<div>
+			<input placeholder="密码" type="password" class="J_pwd" value="123">
+		</div>
 	</div>
 
-	<div id="J_main" style="display:none">
-		<div id="J_detail">detail页面</div>
-		<div id="J_friend">好友列表</div>
+	<div id="J_main">
+		<div id="J_detail">
+			<img class="u_avatar" src="../src/img/default-avatar.png"/>
+			<div class="u_nick">天镶</div>
+		</div>
+		<ul id="J_friend"></ul>
+		<ul id="J_tool">
+			<li class="u_exit iconfont">&#xe601;</li>
+			<li class="u_history iconfont">&#xe604;</li>
+			<li class="u_search iconfont">&#xe600;</li>
+			<li class="u_config iconfont">&#xe602;</li>
+			<li class="u_self iconfont">&#xe603;</li>
+		</ul>
+	</div>
+
+	<div id="J_friend_detail">
+		<div class="J_tabs">
+			<ul>
+				<li><a href="#tab_fd_personal">个人</a></li>
+				<li><a href="#tab_fd_work">工作</a></li>
+				<li><a href="#tab_fd_home">家庭</a></li>
+			</ul>
+			<div id="tab_fd_personal">
+				<dl>
+					<dt>名字</dt><dd class="name"></dd>
+					<dt>中间名</dt><dd class="middleName"></dd>
+					<dt>姓</dt><dd class="familyName"></dd>
+					<dt>昵称</dt><dd class="nickname"></dd>
+					<dt>邮箱</dt><dd class="email"></dd>
+				</dl>
+			</div>
+			<div id="tab_fd_work">
+				<dl>
+					<dt>公司</dt><dd class="company"></dd>
+					<dt>街道地址</dt><dd class="street"></dd>
+					<dt>城市</dt><dd class="city"></dd>
+					<dt>州/省</dt><dd class="province"></dd>
+					<dt>职称</dt><dd class="title"></dd>
+					<dt>部门</dt><dd class="department"></dd>
+					<dt>邮政编码</dt><dd class="postCode"></dd>
+					<dt>国家</dt><dd class="country"></dd>
+
+					<dt>电话</dt><dd class="phone"></dd>
+					<dt>传真</dt><dd class="fax"></dd>
+					<dt>传呼机</dt><dd class="bleeper"></dd>
+					<dt>移动电话</dt><dd class="telephone"></dd>
+					<dt>网页</dt><dd class="webSite"></dd>
+				</dl>
+			</div>
+			<div id="tab_fd_home">
+				<dt>街道地址</dt><dd class="street"></dd>
+				<dt>城市</dt><dd class="city"></dd>
+				<dt>州/省</dt><dd class="province"></dd>
+				<dt>邮政编码</dt><dd class="postCode"></dd>
+				<dt>国家</dt><dd class="country"></dd>
+				
+				<dt>电话</dt><dd class="phone"></dd>
+				<dt>传真</dt><dd class="fax"></dd>
+				<dt>传呼机</dt><dd class="bleeper"></dd>
+				<dt>移动电话</dt><dd class="telephone"></dd>
+			</div>
+		</div>
+
 	</div>
 
 	<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.js"></script>
 	<script type="text/javascript" src="http://cdn.staticfile.org/seajs/2.3.0/sea.js"></script>
 	<script type="text/javascript">
 		seajs.config({
-		  base: "../src/",
+		  base: "../src/js/",
 		  alias: {
 		  	"jsjac": "widgets/jsjac.js",
-		  	"jquery": "widgets/jquery.js"
+		  	"jquery": "widgets/jquery.js",
+		  	"ui": "widgets/jquery-ui-1.10.4.custom.js",
+		  	"alertify": "widgets/alertify.js"
 		  }
 		});
 

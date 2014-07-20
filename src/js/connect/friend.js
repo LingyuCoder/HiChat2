@@ -2,17 +2,17 @@ define(function(require, exports, module) {
 	var $ = require("jquery");
 	var Event = require("event");
 	var connection = require("connect/connection");
-	var pack = require("package/friend");
+	var friendPack = require("package/friend");
 	var detailPack = require("package/detail");
 
 	Event.on({
 		"connect.friend.list": function() {
-			connection.getConnection().sendIQ(pack.list(), {
+			connection.getConnection().sendIQ(friendPack.list(), {
 				error_handler: function(error) {
 					Event.trigger("friend.list.fail");
 				},
 				result_handler: function(friendList) {
-					var friends = pack.parseFriendList(friendList);
+					var friends = friendPack.parseFriendList(friendList);
 					Event.trigger("friend.list.success", [friends]);
 				},
 				default_handler: function(aJSJaCPacket) {
@@ -37,6 +37,13 @@ define(function(require, exports, module) {
 					console.log("default");
 				}
 			});
+		},
+		"connect.friend.presence": function(event) {
+			try {
+				connection.getConnection().send(friendPack.getFriendPresence());
+			} catch (e) {
+				console.error(e.stack);
+			}
 		}
 	});
 });

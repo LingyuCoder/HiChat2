@@ -3,6 +3,7 @@ define(function(require, exports, module) {
 		if (!(this instanceof Address)) {
 			return new Address(oArgs);
 		}
+		this.street = oArgs.street;
 		this.city = oArgs.city;
 		this.province = oArgs.province;
 		this.postCode = oArgs.postCode;

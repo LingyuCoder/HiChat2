@@ -15,7 +15,7 @@ define(function(require, exports, module) {
 		this.resource = oArgs.resource;
 	};
 	$.extend(Detail.prototype, {
-		hasHeadPortrait: function() {
+		hasAvatar: function() {
 			return this.avatar && this.avatar.isExist();
 		},
 		toUser: function() {

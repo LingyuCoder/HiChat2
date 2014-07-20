@@ -1,6 +1,7 @@
 define(["jsjac"], function(require, exports, module) {
 	var config = require("config");
 	var Event = require("event");
+	var friendPack = require("package/friend");
 
 	var connectionConfig = {
 		httpbase: config.httpbase,
@@ -14,8 +15,13 @@ define(["jsjac"], function(require, exports, module) {
 		onMessage: function(aJSJaCPacket) {
 			console.log(aJSJaCPacket.xml());
 		},
-		onPresence: function(aPresence) {
-			console.log(aPresence.xml());
+		onPresence: function(presence) {
+			presence = friendPack.parsePresence(presence);
+			if (presence.type === "available" || presence.type === "unavailable") {
+				Event.trigger("friend.presence." + presence.type, [presence.user, presence.show, presence.status]);
+			} else {
+				Event.trigger("subscribe." + presence.type, [presence.user]);
+			}
 		},
 		onError: function(e) {
 			var errorCode = Number($(e).attr("code"));
