@@ -1,7 +1,11 @@
-define(["jsjac"], function(require, exports, module) {
+define(function(require, exports, module) {
+	require("jsjac");
 	var config = require("config");
 	var Event = require("event");
 	var friendPack = require("package/friend");
+	var chatPack = require("package/chat");
+	var ChatStatus = require("mods/chatstatus");
+	var Message = require("mods/message");
 
 	var connectionConfig = {
 		httpbase: config.httpbase,
@@ -12,8 +16,17 @@ define(["jsjac"], function(require, exports, module) {
 		onIQ: function(aIQ) {
 			console.log("handleIQ:" + aIQ.xml());
 		},
-		onMessage: function(aJSJaCPacket) {
-			console.log(aJSJaCPacket.xml());
+		onMessage: function(aMessage) {
+			if (aMessage.getType() === "groupchat") {
+				//TODO: 群聊消息接受
+			} else if (aMessage.getType() === "chat") {
+				var result = chatPack.parse(aMessage);
+				if (result instanceof Message) {
+					Event.trigger("message.receive", [result]);
+				} else if (result instanceof ChatStatus) {
+					Event.trigger("message.status", [result]);
+				}
+			}
 		},
 		onPresence: function(presence) {
 			presence = friendPack.parsePresence(presence);
