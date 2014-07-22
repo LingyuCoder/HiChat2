@@ -34,7 +34,6 @@
 
 #J_friend {
 	height: 480px;
-	overflow: auto;
 }
 
 #J_friend .z_offline{
@@ -42,20 +41,29 @@
 }
 
 
-#J_friend li {
-	padding: 8px 32px;
+#J_friend .g_friend {
+	padding: 8px 4px 8px 8px;
 	height: 48px;
 	border-radius: 16px;
 	list-style: none;
 	cursor: pointer;
 }
 
-#J_friend li:hover {
+#J_friend .u_cfg {
+	float: right;
+	height: 48px;
+	text-align: center;
+	font-size: 56px;
+	line-height: 24px;
+	overflow: visible;
+}
+
+#J_friend .g_friend:hover {
 	background-color: #f0f0f0;
 }
 
 	#J_detail .u_avatar,
-	#J_friend li .u_avatar,
+	#J_friend .g_friend .u_avatar,
 	.g_chat_info .u_avatar {
 		float: left;
 		height: 100%;
@@ -64,7 +72,7 @@
 	}
 
 	#J_detail .u_nick,
-	#J_friend li .u_nick,
+	#J_friend .g_friend .u_nick,
 	.g_chat_info .u_nick {
 		height: 100%;
 		overflow: hidden;
@@ -139,12 +147,18 @@
 	margin: 5px 0;
 }
 
+.g_chat_dlg .g_line p {
+	margin: 0;
+}
+
 .g_chat_dlg .u_self {
 	float: right;
 }
 
 .g_chat_dlg .u_other {
 	float: left;
+	max-width: 90%;
+	word-wrap: break-word;
 }
 
 .clearfix:after{
@@ -154,4 +168,55 @@
 	height: 0;
 	visibility: hidden;
 	content: "";
+}
+
+#J_friend .u_cfg span {
+	display: inline-block;
+	padding: 6px;
+	border-radius: 4px;
+	font-size: 24px;
+	-webkit-transform-origin: 50% 50%;
+}
+
+#J_friend .u_cfg:hover span{
+	-webkit-animation: u_cfg_rotate linear 3s infinite;
+}
+
+@-webkit-keyframes u_cfg_rotate {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+#J_friend .u_cfg:hover .u_cfg_list {
+	display: block;
+}
+
+#J_friend .u_cfg .u_cfg_list {
+	display: none;
+	padding: .2em 0;
+	background-clip: padding-box;
+	background-color: #ffffff;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 6px 6px 6px 6px;
+	-webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	outline: medium none;
+	z-index: 1051;
+	position: absolute;
+	right: 0;
+}
+
+#J_friend .u_cfg .u_cfg_item {
+	padding: 0 .2em;
+	font-size: 16px;
+	text-align: center;
+}
+
+#J_friend .u_cfg .u_cfg_item:hover {
+	background: #DDD;
 }

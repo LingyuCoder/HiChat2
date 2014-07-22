@@ -5,6 +5,7 @@ define(function(require, exports, module) {
 	var model = require("mods/model");
 	var Message = require("mods/message");
 	require("connect/chat");
+	var timeformat = require("widgets/timeformat");
 	var $chat = $('<div class="g_chat_dlg">' + '<div class="g_chat_info">' + '<img class="u_avatar" src="' + RESOURCE.DEFAULT_AVATAR + '"/>' + '<div class="u_status"></div>' + '<div class="u_nick"></div>' + '</div>' + '<textarea class="u_msg_ipt"></textarea>' + '</div>');
 	var $msgTpl = $('<div class="clearfix g_line"><span class="u_msg"></span></div>');
 
@@ -89,7 +90,7 @@ define(function(require, exports, module) {
 			$dlg = $("#J_chat_" + from.jid + "_" + from.domain);
 		}
 		if ($dlg.length >= 0) {
-			$ctn.text(message.time.getTime() + "-" + message.message);
+			$ctn.html('<p>' + timeformat(message.time, "hh:mm:ss") + "：" + '</p>' + '<p>' + message.message + '</p>');
 			$ctn.addClass("u_msg").addClass(self ? "u_self" : "u_other");
 			$dlg.append($message);
 		} else {
