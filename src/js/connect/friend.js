@@ -1,13 +1,13 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
 	var Event = require("event");
-	var connection = require("connect/connection");
+	var connection = require("connect/connection").getConnection();
 	var friendPack = require("package/friend");
 	var detailPack = require("package/detail");
-
+	var sendedSubscribe = {};
 	Event.on({
 		"connect.friend.list": function() {
-			connection.getConnection().sendIQ(friendPack.list(), {
+			connection.sendIQ(friendPack.list(), {
 				error_handler: function(error) {
 					Event.trigger("friend.list.fail");
 				},
@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 			});
 		},
 		"connect.friend.detail": function(event, friend) {
-			connection.getConnection().sendIQ(detailPack.getOther(friend), {
+			connection.sendIQ(detailPack.getOther(friend), {
 				error_handler: function(error) {
 					console.log(error);
 					Event.trigger("friend.detail.fail");
@@ -38,12 +38,33 @@ define(function(require, exports, module) {
 				}
 			});
 		},
-		"connect.friend.presence": function(event) {
-			try {
-				connection.getConnection().send(friendPack.getFriendPresence());
-			} catch (e) {
-				console.error(e.stack);
+		"connect.friend.presence": function(event, user) {
+			connection.send(friendPack.getFriendPresence(user));
+		},
+		"connect.friend.subscribe.send": function(event, user) {
+			connection.send(friendPack.sendSubscribe(user));
+			sendedSubscribe[user.toString()] = true;
+		},
+		"connect.friend.subscribed.send": function(event, user) {
+			connection.send(friendPack.sendSubscribed(user));
+			if (!sendedSubscribe[user.toString()]) {
+				Event.trigger("connect.friend.subscribe.send", [user]);
+				sendedSubscribe[user.toString()] = true;
+			} else {
+				delete sendedSubscribe[user.toString()];
 			}
+		},
+		"connect.friend.unsubscribed.send": function(event, user) {
+			connection.send(friendPack.sendUnsubscribed(user));
+		},
+		"connect.friend.unsubscribe.send": function(event, user) {
+			connection.send(friendPack.sendUnsubscribe(user));
+			Event.trigger("__connect.subscribe.remove", [user]);
+		},
+		"__connect.subscribe.remove": function(event, user) {
+			connection.sendIQ(friendPack.sendRemoveSubscribe(user), {
+				result_handler: function(aJSJaCPacket) {}
+			});
 		}
 	});
 });

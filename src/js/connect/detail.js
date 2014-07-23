@@ -1,12 +1,12 @@
 define(function(require, exports, module) {
 	var Event = require("event");
-	var connection = require("connect/connection");
+	var connection = require("connect/connection").getConnection();
 	var pack = require("package/detail");
 	var model = require("mods/model");
 
 	Event.on({
 		"connect.detail.getSelf": function() {
-			connection.getConnection().sendIQ(pack.getSelf(), {
+			connection.sendIQ(pack.getSelf(), {
 				error_handler: function(e) {
 					Event.trigger("detail.getSelf.fail");
 				},

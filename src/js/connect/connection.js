@@ -33,7 +33,10 @@ define(function(require, exports, module) {
 			if (presence.type === "available" || presence.type === "unavailable") {
 				Event.trigger("friend.presence." + presence.type, [presence.user, presence.show, presence.status]);
 			} else {
-				Event.trigger("subscribe." + presence.type, [presence.user]);
+				Event.trigger("friend." + presence.type + ".receive", [presence.user]);
+				if (presence.type === "unsubscribe") {
+					Event.trigger("__connect.subscribe.remove", [presence.user]);
+				}
 			}
 		},
 		onError: function(e) {
