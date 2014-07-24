@@ -6,15 +6,16 @@ define(function(require, exports, module) {
 	var alertify = require("alertify");
 	require("connect/friend");
 
+
+	var $findDlg = $("#J_friend_find");
 	var $el = $("#J_friend");
 	var $tpl = $('<li class="g_friend"><img src="' + RESOURCE.DEFAULT_AVATAR + '" alt="" class="u_avatar" /><div class="u_cfg"><span class="iconfont">&#xe602;</span></div><div class="u_nick"></div></li>');
 	var $cfgTpl = $('<ul class="u_cfg_list"><li class="u_cfg_item J_f_detail">详细信息</li><li class="u_cfg_item J_f_remove">删除好友</li><li class="u_cfg_item J_f_group">设置分组</li></ul>');
-	var $fd = $("#J_friend_detail");
+	var $detailDlg = $("#J_friend_detail");
 	var $subReqTpl = $('<div class="J_req_dlg"></div>');
 
-	$fd.find(".J_tabs").tabs();
-
-	$fd.dialog({
+	$detailDlg.find(".J_tabs").tabs();
+	var dlgCfg = {
 		autoOpen: false,
 		closeOnEscape: true,
 		closeText: "关闭",
@@ -23,7 +24,10 @@ define(function(require, exports, module) {
 		width: 400,
 		height: 300,
 		modal: false
-	});
+	};
+	$detailDlg.dialog(dlgCfg);
+
+	$findDlg.dialog(dlgCfg);
 
 	function drawFriend(user) {
 		var $friend = $tpl.clone();
@@ -89,7 +93,7 @@ define(function(require, exports, module) {
 					}
 				}
 			});
-			$fd.dialog("option", "title", $nick.text() + "的名片").dialog("open");
+			$detailDlg.dialog("option", "title", $nick.text() + "的名片").dialog("open");
 		});
 		$friend.on("click", function(event) {
 			Event.trigger("chat.open", [detail]);
