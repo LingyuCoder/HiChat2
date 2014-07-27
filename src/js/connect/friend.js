@@ -49,7 +49,6 @@ define(function(require, exports, module) {
 			connection.send(friendPack.sendSubscribed(user));
 			if (!sendedSubscribe[user.toString()]) {
 				Event.trigger("connect.friend.subscribe.send", [user]);
-				sendedSubscribe[user.toString()] = true;
 			} else {
 				delete sendedSubscribe[user.toString()];
 			}

@@ -63,19 +63,6 @@ define(function(require, exports, module) {
 			aPresence.setType("subscribed");
 			return aPresence;
 		},
-		"sendBothSubscribe": function(user) {
-			var aIQ = new JSJaCIQ(),
-				queryNode = aIQ.setQuery(NS_ROSTER),
-				itemNode = aIQ.buildNode("item");
-			aIQ.setType("set");
-			itemNode.setAttribute("jid", user.toString());
-			itemNode.setAttribute("subscription", "both");
-			if (typeof tag === 'string') {
-				itemNode.setAttribute("name", tag);
-			}
-			queryNode.appendChild(itemNode);
-			return aIQ;
-		},
 		"sendRemoveSubscribe": function(user) {
 			var aIQ = new JSJaCIQ(),
 				queryNode,

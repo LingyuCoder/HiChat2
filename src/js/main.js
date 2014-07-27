@@ -1,6 +1,7 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
 	var $el = $("#J_main");
+	var $toolbar = $('#J_tool');
 	require("detail");
 	require("friend");
 	require("chat");
@@ -20,6 +21,10 @@ define(function(require, exports, module) {
 			my: "right center",
 			at: "right-150 center"
 		}
+	});
+
+	$toolbar.find(".u_search").on("click", function(event){
+		Event.trigger("friend.search.open");
 	});
 
 	Event.on({

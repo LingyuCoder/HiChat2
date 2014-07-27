@@ -40,6 +40,7 @@ define(function(require, exports, module) {
 			}
 		},
 		onError: function(e) {
+			console.log(e.xml());
 			var errorCode = Number($(e).attr("code"));
 			if (errorCode >= 400 && errorCode < 500) {
 				Event.trigger("connect.login.fail", ["用户名或密码错误"]);
@@ -111,4 +112,8 @@ define(function(require, exports, module) {
 			return connection && connection.connected();
 		}
 	};
+
+	Event.on({
+		"connect.logout": function() {}
+	});
 });

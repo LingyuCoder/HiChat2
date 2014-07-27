@@ -2,17 +2,24 @@ define(function(require, exports, module) {
 	var $ = require("jquery");
 	var Event = require("event");
 	var model = require("mods/model");
+	var User = require("mods/user");
+	var config = require("config");
 	var RESOURCE = require("resource");
 	var alertify = require("alertify");
+	var util = require("util");
 	require("connect/friend");
 
 
 	var $findDlg = $("#J_friend_find");
+	var $findId = $findDlg.find(".J_f_find_id");
+	var $findResult = $findDlg.find(".J_f_find_rst");
 	var $el = $("#J_friend");
 	var $tpl = $('<li class="g_friend"><img src="' + RESOURCE.DEFAULT_AVATAR + '" alt="" class="u_avatar" /><div class="u_cfg"><span class="iconfont">&#xe602;</span></div><div class="u_nick"></div></li>');
 	var $cfgTpl = $('<ul class="u_cfg_list"><li class="u_cfg_item J_f_detail">详细信息</li><li class="u_cfg_item J_f_remove">删除好友</li><li class="u_cfg_item J_f_group">设置分组</li></ul>');
 	var $detailDlg = $("#J_friend_detail");
 	var $subReqTpl = $('<div class="J_req_dlg"></div>');
+
+	var sendedSubscribe = {};
 
 	$detailDlg.find(".J_tabs").tabs();
 	var dlgCfg = {
@@ -25,9 +32,29 @@ define(function(require, exports, module) {
 		height: 300,
 		modal: false
 	};
-	$detailDlg.dialog(dlgCfg);
+	$detailDlg.dialog(util.merge({}, dlgCfg));
 
-	$findDlg.dialog(dlgCfg);
+	$findDlg.dialog(util.merge({}, dlgCfg, {
+		buttons: [{
+			text: "查找",
+			click: function() {
+				var jid = $.trim($findId.val());
+				var user;
+				if (jid) {
+					jid += jid.indexOf('@') !== -1 ? "" : ("@" + config.domain);
+					user = new User(jid);
+					Event.trigger("connect.friend.subscribe.send", [user]);
+					sendedSubscribe[user.toString()] = true;
+				}
+			}
+		}, {
+			text: "关闭",
+			click: function() {
+				$findDlg.dialog("close");
+			}
+		}],
+		title: "查找"
+	}));
 
 	function drawFriend(user) {
 		var $friend = $tpl.clone();
@@ -119,6 +146,7 @@ define(function(require, exports, module) {
 				text: "接受",
 				click: function() {
 					Event.trigger("connect.friend.subscribed.send", [user]);
+					Event.trigger("connect.friend.subscribe.send", [user]);
 					drawFriend(user);
 					getNewFriendInfo(user);
 					$dlg.dialog("destroy");
@@ -141,6 +169,9 @@ define(function(require, exports, module) {
 	Event.on({
 		"login.success": function() {
 			Event.trigger("connect.friend.list");
+		},
+		"friend.search.open": function(event) {
+			$findDlg.dialog("open");
 		},
 		"friend.list.success": function(event, friends) {
 			//TODO: 获取到好友列表
@@ -183,7 +214,13 @@ define(function(require, exports, module) {
 			alertify.error("发送好友请求失败");
 		},
 		"friend.subscribe.receive": function(event, user) {
-			drawSubscribeRequest(user);
+			if (!sendedSubscribe[user.toString()]) {
+				drawSubscribeRequest(user);
+			} else {
+				Event.trigger("connect.friend.subscribed.send", [user]);
+				delete sendedSubscribe[user.toString()];
+			}
+
 		},
 		"friend.unsubscribe.receive": function(event, user) {
 			deleteFriend(user);

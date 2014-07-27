@@ -40,6 +40,14 @@ define(function(require, exports, module) {
 					break;
 				}
 			}
+		},
+		hasFriend: function(user) {
+			for (var i = this.friends.length; i--;) {
+				if (this.friends[i].toString() === user.toString()) {
+					return true;
+				}
+			}
+			return false;
 		}
 	};
 });
