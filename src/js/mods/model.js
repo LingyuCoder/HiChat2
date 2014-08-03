@@ -2,6 +2,7 @@ define(function(require, exports, module) {
 	var $ = require("jquery");
 	var self;
 	var detail;
+	var status;
 	var friends = [];
 	module.exports = {
 		setSelf: function(usr) {
@@ -48,6 +49,12 @@ define(function(require, exports, module) {
 				}
 			}
 			return false;
+		},
+		getStatus: function() {
+			return status;
+		},
+		setStatus: function(newStatus) {
+			status = newStatus;
 		}
 	};
 });

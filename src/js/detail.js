@@ -10,6 +10,7 @@ define(function(require, exports, module) {
 	var drawDetail = function(detail) {
 		var $avatar = $el.find(".u_avatar");
 		var $nick = $el.find(".u_nick");
+		var $state = $el.find(".u_state");
 		if (detail.hasAvatar()) {
 			$avatar.attr("src", detail.avatar.toString());
 		} else {

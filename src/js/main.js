@@ -5,6 +5,7 @@ define(function(require, exports, module) {
 	require("detail");
 	require("friend");
 	require("chat");
+	require("status");
 	var Event = require("event");
 	var model = require("mods/model");
 

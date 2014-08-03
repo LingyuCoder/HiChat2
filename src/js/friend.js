@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 	var $findId = $findDlg.find(".J_f_find_id");
 	var $findResult = $findDlg.find(".J_f_find_rst");
 	var $el = $("#J_friend");
-	var $tpl = $('<li class="g_friend"><img src="' + RESOURCE.DEFAULT_AVATAR + '" alt="" class="u_avatar" /><div class="u_cfg"><span class="iconfont">&#xe602;</span></div><div class="u_nick"></div></li>');
+	var $tpl = $('<li class="g_friend"><img src="' + RESOURCE.DEFAULT_AVATAR + '" alt="" class="u_avatar" /><span class="u_status"></span><div class="u_cfg"><span class="iconfont">&#xe602;</span></div><div class="u_nick"></div></li>');
 	var $cfgTpl = $('<ul class="u_cfg_list"><li class="u_cfg_item J_f_detail">详细信息</li><li class="u_cfg_item J_f_remove">删除好友</li><li class="u_cfg_item J_f_group">设置分组</li></ul>');
 	var $detailDlg = $("#J_friend_detail");
 	var $subReqTpl = $('<div class="J_req_dlg"></div>');

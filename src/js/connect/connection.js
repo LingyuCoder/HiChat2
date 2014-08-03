@@ -4,6 +4,7 @@ define(function(require, exports, module) {
 	var Event = require("event");
 	var friendPack = require("package/friend");
 	var chatPack = require("package/chat");
+	var statusPack = require("package/status");
 	var ChatStatus = require("mods/chatstatus");
 	var Message = require("mods/message");
 
@@ -31,7 +32,8 @@ define(function(require, exports, module) {
 		onPresence: function(presence) {
 			presence = friendPack.parsePresence(presence);
 			if (presence.type === "available" || presence.type === "unavailable") {
-				Event.trigger("friend.presence." + presence.type, [presence.user, presence.show, presence.status]);
+				Event.trigger("friend.presence." + presence.type, [presence.user]);
+				Event.trigger("status.friend.receive", [presence.user, presence.show, presence.status]);
 			} else {
 				Event.trigger("friend." + presence.type + ".receive", [presence.user]);
 				if (presence.type === "unsubscribe") {
