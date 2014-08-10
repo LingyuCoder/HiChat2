@@ -1,6 +1,5 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
-
 	var Avatar = function(oArgs) {
 		if (!(this instanceof Avatar)) {
 			return new Avatar(oArgs);

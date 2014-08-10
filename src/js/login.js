@@ -39,6 +39,16 @@ define(function(require, exports, module) {
 		},
 		"detail/getSelf/success": function() {
 			$el.dialog("close");
+		},
+		"logout/success": function() {
+			$el.dialog("open");
+			model.self = null;
+			model.detail = null
+			model.status = null;
+			model.friends = null;
+			model.groups = null;
+			model.nicks = null;
+			model.history = null;
 		}
 	});
 });

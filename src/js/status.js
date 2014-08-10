@@ -27,7 +27,7 @@ define(function(require, exports, module) {
 		},
 		"status/friend/receive": function(event, user, show, status) {
 			var $friendStatus = $("#J_friend_" + user.jid + "_" + user.domain).find(".u_status");
-			$friendStatus.text(statusMap[show]);
+			$friendStatus.attr("class", "u_status u_status_" + show);
 		}
 	});
 });

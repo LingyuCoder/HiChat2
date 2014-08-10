@@ -7,6 +7,11 @@ var app = koa();
 
 var raw = require('raw-body');
 
+var xml2js = require('xml2js');
+
+
+var parser = new xml2js.Parser();
+
 function getBody(req) {
 	req = req.req || req;
 	var type = (req.headers['content-type'] || '').split(';')[0];
@@ -43,16 +48,25 @@ var boshOpts = {
 };
 
 function boshRequest(ret) {
+	var cache = "";
 	return function(done) {
-		var fb_req = http.request(boshOpts, function(fb_res) {
-			fb_res.on('data', function(fb_data) {
-				console.log('xmpp response: ' + fb_data.toString());
-				done(null, fb_data.toString());
+		var boshReq = http.request(boshOpts, function(boshRes) {
+			boshRes.on('data', function(data) {
+				console.log('xmpp response:' + data.toString());
+				data = data.toString();
+				parser.parseString(data, function(err, result) {
+					if (err) {
+						cache += data;
+					} else {
+						cache += data;
+						done(null, cache);
+					}
+				});
 			});
 		});
 
 		console.log('xmpp request: ' + ret);
-		fb_req.end(ret);
+		boshReq.end(ret);
 	};
 }
 

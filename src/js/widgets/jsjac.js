@@ -4144,7 +4144,7 @@ JSJaCHttpBindingConnection.prototype._parseResponse = function(req) {
         return null;
       }
       this.oDbg.log("repeating ("+this._errcnt+")",1);
-     
+      console.log(r.status, r.responseXML);
       this._setStatus('proto_error_fallback');
      
       // schedule next tick

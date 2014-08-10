@@ -61,20 +61,20 @@ define(function(require, exports, module) {
 		"connect/friend/group/set": function(event, user, groupName) {
 			connection.sendIQ(friendPack.setGroup(user, groupName), {
 				error_handler: function(error) {
-					Event.trigger("connect/friend/group/set/fail", [error]);
+					Event.trigger("friend/group/set/fail", [error]);
 				},
 				result_handler: function(aJSJaCPacket) {
-					Event.trigger("connect/friend/group/set/success", [user, groupName]);
+					Event.trigger("friend/group/set/success", [user, groupName]);
 				}
 			});
 		},
 		"connect/friend/nick/set": function(event, user, nick) {
 			connection.sendIQ(friendPack.setNick(user, nick), {
 				error_handler: function(error) {
-					Event.trigger("connect/friend/nick/set/fail", [error]);
+					Event.trigger("friend/nick/set/fail", [error]);
 				},
 				result_handler: function(aJSJaCPacket) {
-					Event.trigger("connect/friend/nick/set/success", [user, nick]);
+					Event.trigger("friend/nick/set/success", [user, nick]);
 				}
 			});
 		}

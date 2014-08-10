@@ -15,6 +15,12 @@ define(function(require, exports, module) {
 		"connect/login/go": function(event, username, password) {
 			curUsername = username;
 			connection.connect(username, password);
+		},
+		"connect/logout": function() {
+			var p = new JSJaCPresence();
+			p.setType("unavailable");
+			connection.getConnection().send(p);
+			connection.disconnect();
 		}
 	});
 });

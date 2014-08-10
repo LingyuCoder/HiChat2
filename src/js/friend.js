@@ -15,7 +15,7 @@ define(function(require, exports, module) {
 	var $findId = $findDlg.find(".J_f_find_id");
 	var $findResult = $findDlg.find(".J_f_find_rst");
 	var $el = $("#J_friend");
-	var $tpl = $('<div class="g_friend"><img src="' + RESOURCE.DEFAULT_AVATAR + '" alt="" class="u_avatar" /><span class="u_status"></span><div class="u_cfg"><span class="iconfont">&#xe602;</span></div><div class="u_nick"></div></div>');
+	var $tpl = $('<div class="g_friend"><div class="u_avatar"><span class="u_remind"></span><span class="u_status u_status_"></span><img src="' + RESOURCE.DEFAULT_AVATAR + '" alt="" class="u_avatar" /></div><div class="u_cfg"><span class="iconfont">&#xe602;</span></div><div class="u_nick"></div></div>');
 	var $cfgTpl = $('<ul class="u_cfg_list"><li class="u_cfg_item J_f_detail">详细信息</li><li class="u_cfg_item J_f_group">设置分组</li><li class="u_cfg_item J_f_nick">设置备注</li><li class="u_cfg_item J_f_remove">删除好友</li></ul>');
 	var $detailDlg = $("#J_friend_detail");
 	var $subReqTpl = $('<div class="J_req_dlg"></div>');
@@ -61,6 +61,7 @@ define(function(require, exports, module) {
 		var $friend = $tpl.clone();
 		var $avatar = $friend.find(".u_avatar");
 		var $nick = $friend.find(".u_nick");
+		$friend.find(".u_remind").hide();
 		$nick.text(user.toString());
 		var id = "J_friend_" + user.jid + "_" + user.domain;
 		if ($("#" + id).length > 0) {
@@ -107,19 +108,16 @@ define(function(require, exports, module) {
 		var $nick = $friend.find(".u_nick");
 		var $cfg = $("#J_f_cfg_" + detail.jid + "_" + detail.domain);
 		if (detail.hasAvatar()) {
-			$avatar.attr("src", detail.avatar.toString());
+			$avatar.find("img").attr("src", detail.avatar.toString());
 		}
 		$cfg.find(".J_f_detail").on("click", function() {
 			$.each(["personal", "work", "home"], function(index, type) {
 				var item;
-				var hasOwnProperty = Object.prototype.hasOwnProperty;
 				var $element = $("#tab_fd_" + type);
 				var info = detail[type + "Info"];
-				for (item in info) {
-					if (hasOwnProperty.call(info, item)) {
-						$element.find("." + item).text(info[item]);
-					}
-				}
+				$.each(info, function(item, value) {
+					$element.find("." + item).text(value);
+				});
 			});
 			$detailDlg.dialog("option", "title", $nick.text() + "的名片").dialog("open");
 		});
@@ -246,6 +244,7 @@ define(function(require, exports, module) {
 		"friend/list/success": function(event, friends, groups, nicks) {
 			//TODO: 获取到好友列表
 			model.set("friends", friends);
+			$el.html("");
 			$.each(friends, function(index, friend) {
 				drawFriend(friend);
 				Event.trigger("connect/friend/detail", [friend]);
@@ -272,7 +271,7 @@ define(function(require, exports, module) {
 			if (!$friend.hasClass("z_offline")) {
 				$friend.addClass("z_offline");
 			}
-			$el.append($friend);
+			$friend.parent().append($friend);
 		},
 		"friend/list/fail": function() {
 			alertify.error("获取好友列表失败");
@@ -311,10 +310,10 @@ define(function(require, exports, module) {
 		"friend/unsubscribed/receive": function(event, user) {
 			alertify.error(user.toString() + "拒绝了你的好友请求");
 		},
-		"connect/friend/group/set/fail": function(event, error) {
+		"friend/group/set/fail": function(event, error) {
 			alertify.error("设置分组失败");
 		},
-		"connect/friend/group/set/success": function(event, friend, groupName) {
+		"friend/group/set/success": function(event, friend, groupName) {
 			var groups = model.get("groups");
 			var oldName;
 			$.each(groups, function(name, group) {
@@ -330,13 +329,25 @@ define(function(require, exports, module) {
 			groups[groupName].add(friend);
 			changeGroup(friend, oldName, groupName);
 		},
-		"connect/friend/nick/set/fail": function(event) {
+		"friend/nick/set/fail": function(event) {
 			alertify.error("设置备注失败");
 		},
-		"connect/friend/nick/set/success": function(event, friend, nick) {
+		"friend/nick/set/success": function(event, friend, nick) {
 			var nicks = model.get("nicks");
 			nicks[friend.toString()] = nick;
 			changeNick(friend, nick);
+		},
+		"friend/message/remind": function(event, friend, count) {
+			var $friend = $("#J_friend_" + friend.jid + "_" + friend.domain);
+			if (count === 0) {
+				$friend.find(".u_remind").hide();
+			} else {
+				$friend.find(".u_remind").show();
+				$friend.find(".u_remind").text(count);
+			}
+		},
+		"logout/success": function() {
+			$el.accordion("destroy");
 		}
 	});
 });

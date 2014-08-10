@@ -17,11 +17,19 @@ define(function(require, exports, module) {
 					detail.domain = self.domain;
 					detail.resource = self.resource;
 					Event.trigger("detail/getSelf/success", [detail]);
-				},
-				default_handler: function(e) {
-					console.log("default", e);
 				}
 			});
 		},
+		"connect/detail/setSelf": function(event, detail) {
+			console.log(pack.setSelf(detail).xml());
+			connection.sendIQ(pack.setSelf(detail), {
+				error_handler: function(aJSJaCPacket) {
+					Event.trigger("detail/setSelf/fail");
+				},
+				result_handler: function(aJSJaCPacket) {
+					Event.trigger("detail/setSelf/success", [detail]);
+				}
+			});
+		}
 	});
 });

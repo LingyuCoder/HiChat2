@@ -36,6 +36,14 @@ define(function(require, exports, module) {
 		Event.trigger("friend/search/open");
 	});
 
+	$toolbar.find(".u_self").on("click", function(event) {
+		Event.trigger("detail/show");
+	});
+	
+	$toolbar.find(".u_exit").on("click", function(event) {
+		Event.trigger("connect/logout");
+	});
+
 	Event.on({
 		"detail/getSelf/success": function() {
 			$($el.dialog("widget")).find(".ui-widget-header").html($("#J_detail"));
@@ -43,6 +51,9 @@ define(function(require, exports, module) {
 		},
 		"login/fail": function() {
 			$el.hide();
+		},
+		"logout/success": function(){
+			$el.dialog("close");
 		}
 	});
 });

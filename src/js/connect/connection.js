@@ -57,7 +57,7 @@ define(function(require, exports, module) {
 			Event.trigger("connect/login/success");
 		},
 		onDisconnected: function() {
-			Event.trigger("connect/logout");
+			Event.trigger("logout/success");
 		},
 		onIqVersion: function(iq) {
 			connection.send(iq.reply([
@@ -107,15 +107,11 @@ define(function(require, exports, module) {
 		},
 		disconnect: function() {
 			if (this.isConnecting()) {
-				con.disconnect();
+				connection.disconnect();
 			}
 		},
 		isConnecting: function() {
 			return connection && connection.connected();
 		}
 	};
-
-	Event.on({
-		"connect/logout": function() {}
-	});
 });

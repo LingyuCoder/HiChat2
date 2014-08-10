@@ -8,6 +8,7 @@ define(function(require, exports, module) {
 		this.friends;
 		this.groups;
 		this.nicks;
+		this.history;
 	}
 
 	$.extend(Model.prototype, {

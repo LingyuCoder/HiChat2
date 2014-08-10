@@ -56,6 +56,13 @@ define(function(require, exports, module) {
 			}
 		});
 		$dlg.attr("id", "J_chat_" + detail.jid + "_" + detail.domain);
+		if (model && model.history && (unreadMessage = model.history[detail.toString()])) {
+			$.each(unreadMessage, function(index, message) {
+				drawMessage(message);
+			});
+			delete model.history[detail.toString()];
+			Event.trigger("friend/message/remind", [detail.toUser(), 0]);
+		}
 	}
 
 	function changeChatStatus(status) {
@@ -78,23 +85,23 @@ define(function(require, exports, module) {
 	}
 
 	function drawMessage(message) {
-		var $message = $msgTpl.clone();
-		var $ctn = $message.find("span");
 		var from = message.from;
 		var to = message.to;
 		var $dlg;
 		var self = from.toString() === model.get("self").toString();
-		if (self) {
-			$dlg = $("#J_chat_" + to.jid + "_" + to.domain);
-		} else {
-			$dlg = $("#J_chat_" + from.jid + "_" + from.domain);
-		}
-		if ($dlg.length >= 0) {
+		$dlg = self ? $("#J_chat_" + to.jid + "_" + to.domain) : $("#J_chat_" + from.jid + "_" + from.domain);
+		if ($dlg.length > 0) {
+			var $message = $msgTpl.clone();
+			var $ctn = $message.find("span");
 			$ctn.html('<p>' + timeformat(message.time, "hh:mm:ss") + "：" + '</p>' + '<p>' + message.message + '</p>');
 			$ctn.addClass("u_msg").addClass(self ? "u_self" : "u_other");
 			$dlg.append($message);
 		} else {
-			//TODO: 消息到来，但窗口未打开，需记录，在后来打开窗口后输出
+			var fromJid = from.toString();
+			var history = (model.history = model.history || {});
+			history[fromJid] = history[fromJid] || [];
+			history[fromJid].push(message);
+			Event.trigger("friend/message/remind", [from, history[fromJid].length]);
 		}
 	}
 
