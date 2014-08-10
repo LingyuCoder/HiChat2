@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 			click: function() {
 				var name, password;
 				if ((name = $el.find(".J_name ").val()) && (password = $el.find(".J_pwd ").val())) {
-					Event.trigger("connect.login.go", [name, password]);
+					Event.trigger("connect/login/go", [name, password]);
 				} else {
 					//TODO: 显示用户名或密码未输入
 				}
@@ -31,13 +31,13 @@ define(function(require, exports, module) {
 	$($el.dialog("widget")).find(".ui-dialog-titlebar-close").remove();
 
 	Event.on({
-		"login.success": function(event, self) {
-			model.setSelf(self);
+		"login/success": function(event, self) {
+			model.set("self", self);
 		},
-		"login.fail": function(event, reason) {
+		"login/fail": function(event, reason) {
 			alertify.error(reason);
 		},
-		"detail.getSelf.success": function() {
+		"detail/getSelf/success": function() {
 			$el.dialog("close");
 		}
 	});

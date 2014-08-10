@@ -3,6 +3,7 @@ define(function(require, exports, module) {
 	var Event = require("event");
 	var model = require("mods/model");
 	var User = require("mods/user");
+	var Group = require("mods/group");
 	module.exports = {
 		list: function() {
 			var aIQ = new JSJaCIQ(),
@@ -12,12 +13,28 @@ define(function(require, exports, module) {
 		},
 		parseFriendList: function(friendList) {
 			var friends = [];
+			var groups = {};
+			var nicks = {};
 			$("item", friendList.getQuery()).each(function() {
 				var self = $(this);
-				var user = new User(self.attr("jid"));
+				var group = self.find("group");
+				var jid = self.attr("jid");
+				var groupName = group.length > 0 ? group.text() : '__default__';
+				var user = new User(jid);
+				var nick = self.attr("name");
+				if (nick) {
+					nicks[jid] = nick;
+				}
+
+				groups[groupName] = groups[groupName] || new Group(groupName);
+				groups[groupName].add(user);
 				friends.push(user);
 			});
-			return friends;
+			return {
+				friends: friends,
+				groups: groups,
+				nicks: nicks
+			};
 		},
 		"parsePresence": function(aPresence) {
 			var type = aPresence.getType() || "available";
@@ -72,6 +89,26 @@ define(function(require, exports, module) {
 			itemNode = aIQ.buildNode("item");
 			itemNode.setAttribute("jid", user.toString());
 			itemNode.setAttribute("subscription", "remove");
+			queryNode.appendChild(itemNode);
+			return aIQ;
+		},
+		"setGroup": function(user, groupName) {
+			var aIQ = new JSJaCIQ(),
+				queryNode = aIQ.setType("set").setQuery(NS_ROSTER),
+				itemNode = aIQ.buildNode("item"),
+				i;
+			itemNode.setAttribute("jid", user.toString());
+			itemNode.appendChild(aIQ.buildNode("group", groupName));
+			queryNode.appendChild(itemNode);
+			return aIQ;
+		},
+		"setNick": function(user, nick) {
+			var aIQ = new JSJaCIQ(),
+				queryNode = aIQ.setType("set").setQuery(NS_ROSTER),
+				itemNode = aIQ.buildNode("item"),
+				i;
+			itemNode.setAttribute("jid", user.toString());
+			itemNode.setAttribute("name", nick);
 			queryNode.appendChild(itemNode);
 			return aIQ;
 		}

@@ -23,41 +23,41 @@ define(function(require, exports, module) {
 			} else if (aMessage.getType() === "chat") {
 				var result = chatPack.parse(aMessage);
 				if (result instanceof Message) {
-					Event.trigger("message.receive", [result]);
+					Event.trigger("message/receive", [result]);
 				} else if (result instanceof ChatStatus) {
-					Event.trigger("message.status", [result]);
+					Event.trigger("message/status", [result]);
 				}
 			}
 		},
 		onPresence: function(presence) {
 			presence = friendPack.parsePresence(presence);
 			if (presence.type === "available" || presence.type === "unavailable") {
-				Event.trigger("friend.presence." + presence.type, [presence.user]);
-				Event.trigger("status.friend.receive", [presence.user, presence.show, presence.status]);
+				Event.trigger("friend/presence/" + presence.type, [presence.user]);
+				Event.trigger("status/friend/receive", [presence.user, presence.show, presence.status]);
 			} else {
-				Event.trigger("friend." + presence.type + ".receive", [presence.user]);
+				Event.trigger("friend/" + presence.type + "/receive", [presence.user]);
 				if (presence.type === "unsubscribe") {
-					Event.trigger("__connect.subscribe.remove", [presence.user]);
+					Event.trigger("__connect/subscribe/remove", [presence.user]);
 				}
 			}
 		},
 		onError: function(e) {
-			console.log(e.xml());
+			console.log(e.xml);
 			var errorCode = Number($(e).attr("code"));
 			if (errorCode >= 400 && errorCode < 500) {
-				Event.trigger("connect.login.fail", ["用户名或密码错误"]);
+				Event.trigger("connect/login/fail", ["用户名或密码错误"]);
 			} else if (errorCode >= 500) {
-				Event.trigger("connect.login.fail", ["服务器错误，请联系管理员"]);
+				Event.trigger("connect/login/fail", ["服务器错误，请联系管理员"]);
 			}
 		},
 		onStatusChanged: function(status) {
 			console.log("Status changed : ", status);
 		},
 		onConnected: function() {
-			Event.trigger("connect.login.success");
+			Event.trigger("connect/login/success");
 		},
 		onDisconnected: function() {
-			Event.trigger("connect.logout");
+			Event.trigger("connect/logout");
 		},
 		onIqVersion: function(iq) {
 			connection.send(iq.reply([
@@ -116,6 +116,6 @@ define(function(require, exports, module) {
 	};
 
 	Event.on({
-		"connect.logout": function() {}
+		"connect/logout": function() {}
 	});
 });

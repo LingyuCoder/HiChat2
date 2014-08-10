@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
-	var $el = $("#J_main").find(".u_status");
+	var $el = $("#J_status");
 	var Event = require("event");
 	var model = require("mods/model");
 	var statusMap = {
@@ -12,8 +12,8 @@ define(function(require, exports, module) {
 
 	$el.on("change", function() {
 		var newStatus = $el.val();
-		Event.trigger("connect.status.send", [newStatus]);
-		model.setStatus(newStatus);
+		Event.trigger("connect/status/send", [newStatus]);
+		model.set("status", newStatus);
 	});
 
 	$.each(statusMap, function(value, text) {
@@ -21,11 +21,11 @@ define(function(require, exports, module) {
 	});
 
 	Event.on({
-		"detail.getSelf.success": function() {
+		"detail/getSelf/success": function() {
 			$el.val("chat");
-			model.setStatus("chat");
+			model.set("status", "chat");
 		},
-		"status.friend.receive": function(event, user, show, status) {
+		"status/friend/receive": function(event, user, show, status) {
 			var $friendStatus = $("#J_friend_" + user.jid + "_" + user.domain).find(".u_status");
 			$friendStatus.text(statusMap[show]);
 		}

@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 	var PresencePack = require("package/presence");
 
 	Event.on({
-		"connect.friend.presence": function(event) {
+		"connect/friend/presence": function(event) {
 			connection.send(PresencePack.getFriendPersence());
 		}
 	});

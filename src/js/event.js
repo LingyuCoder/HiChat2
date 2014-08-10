@@ -11,7 +11,11 @@ define(function(require, exports, module) {
 		},
 		trigger: function() {
 			console.log(arguments[0]);
-			EventHandler.trigger.apply(EventHandler, arguments);
+			try {
+				EventHandler.trigger.apply(EventHandler, arguments);
+			} catch (e) {
+				console.error(e.stack);
+			}
 		},
 	};
 });

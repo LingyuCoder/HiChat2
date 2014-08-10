@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 	var connection = require("connect/connection").getConnection();
 
 	Event.on({
-		"connect.message.send": function(event, message) {
+		"connect/message/send": function(event, message) {
 			connection.send(chatPack.sendMessage(message));
 		}
 	});

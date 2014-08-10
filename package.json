@@ -1,0 +1,27 @@
+{
+  "name": "hichat2",
+  "version": "0.0.0",
+  "description": "HiChat2\r =======",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LingyuCoder/HiChat2.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LingyuCoder/HiChat2/issues"
+  },
+  "homepage": "https://github.com/LingyuCoder/HiChat2",
+  "dependencies": {
+    "koa": "^0.9.0",
+    "koa-body-parser": "^1.1.0",
+    "koa-router": "^3.2.3",
+    "koa-static": "^1.4.6",
+    "raw-body": "^1.3.0",
+    "xml2js": "^0.4.4"
+  }
+}

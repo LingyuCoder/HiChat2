@@ -30,9 +30,9 @@ define(function(require, exports, module) {
 				text: "发送",
 				click: function() {
 					var content = $.trim($textarea.val());
-					var message = new Message(content, model.getSelf().toString(), detail.toString(), new Date());
+					var message = new Message(content, model.get("self").toString(), detail.toString(), new Date());
 					if (content) {
-						Event.trigger("connect.message.send", [message]);
+						Event.trigger("connect/message/send", [message]);
 						drawMessage(message);
 						$textarea.val("");
 					}
@@ -83,7 +83,7 @@ define(function(require, exports, module) {
 		var from = message.from;
 		var to = message.to;
 		var $dlg;
-		var self = from.toString() === model.getSelf().toString();
+		var self = from.toString() === model.get("self").toString();
 		if (self) {
 			$dlg = $("#J_chat_" + to.jid + "_" + to.domain);
 		} else {
@@ -99,13 +99,13 @@ define(function(require, exports, module) {
 	}
 
 	Event.on({
-		"chat.open": function(event, detail) {
+		"chat/open": function(event, detail) {
 			initChatDialog(detail);
 		},
-		"message.receive": function(event, message) {
+		"message/receive": function(event, message) {
 			drawMessage(message);
 		},
-		"message.status": function(event, status) {
+		"message/status": function(event, status) {
 			changeChatStatus(status);
 		}
 	});

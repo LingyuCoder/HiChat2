@@ -2680,12 +2680,12 @@ JSJaCConnection.prototype.connect = function(oArg) {
   this._req[slot] = this._setupRequest(true);
 
   var reqstr = this._getInitialRequestString();
-
   this.oDbg.log(reqstr,4);
 
   this._req[slot].r.onreadystatechange = 
   JSJaC.bind(function() {
                if (this._req[slot].r.readyState == 4) {
+                 console.log(this._req[slot].r.responseText);
                  this.oDbg.log("async recv: "+this._req[slot].r.responseText,4);
                  this._handleInitialResponse(slot); // handle response
                }
@@ -2698,7 +2698,6 @@ JSJaCConnection.prototype.connect = function(oArg) {
                    return false;
                  }, this);
   }
-
   this._req[slot].r.send(reqstr);
 };
 
@@ -3715,7 +3714,6 @@ JSJaCConnection.prototype._process = function(timerval) {
 
   if (typeof(this._rid) != 'undefined') // remember request id if any
     this._req[slot].rid = this._rid;
-
   this.oDbg.log("sending: " + reqstr,4);
   this._req[slot].r.send(reqstr);
 };

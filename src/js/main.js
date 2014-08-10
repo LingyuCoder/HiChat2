@@ -8,6 +8,14 @@ define(function(require, exports, module) {
 	require("status");
 	var Event = require("event");
 	var model = require("mods/model");
+	var alertify = require("alertify");
+
+	alertify.set({
+		labels: {
+			ok: "确认",
+			cancel: "取消"
+		}
+	});
 
 	$el.dialog({
 		autoOpen: false,
@@ -24,16 +32,16 @@ define(function(require, exports, module) {
 		}
 	});
 
-	$toolbar.find(".u_search").on("click", function(event){
-		Event.trigger("friend.search.open");
+	$toolbar.find(".u_search").on("click", function(event) {
+		Event.trigger("friend/search/open");
 	});
 
 	Event.on({
-		"detail.getSelf.success": function() {
+		"detail/getSelf/success": function() {
 			$($el.dialog("widget")).find(".ui-widget-header").html($("#J_detail"));
 			$el.dialog("open");
 		},
-		"login.fail": function() {
+		"login/fail": function() {
 			$el.hide();
 		}
 	});

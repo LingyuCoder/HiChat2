@@ -192,3 +192,7 @@
 #J_friend .u_cfg .u_cfg_item:hover {
 	background: #DDD;
 }
+
+.u_status_sel {
+	float: left
+}

@@ -5,18 +5,18 @@ define(function(require, exports, module) {
 	var model = require("mods/model");
 
 	Event.on({
-		"connect.detail.getSelf": function() {
+		"connect/detail/getSelf": function() {
 			connection.sendIQ(pack.getSelf(), {
 				error_handler: function(e) {
-					Event.trigger("detail.getSelf.fail");
+					Event.trigger("detail/getSelf/fail");
 				},
 				result_handler: function(detail) {
-					var self = model.getSelf();
+					var self = model.get("self");
 					detail = pack.parse(detail);
 					detail.jid = self.jid;
 					detail.domain = self.domain;
 					detail.resource = self.resource;
-					Event.trigger("detail.getSelf.success", [detail]);
+					Event.trigger("detail/getSelf/success", [detail]);
 				},
 				default_handler: function(e) {
 					console.log("default", e);

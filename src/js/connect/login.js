@@ -6,13 +6,13 @@ define(function(require, exports, module) {
 	var curUsername;
 
 	Event.on({
-		"connect.login.success": function() {
-			Event.trigger("login.success", [new User(curUsername + "@" + config.domain + "/" + config.resource)]);
+		"connect/login/success": function() {
+			Event.trigger("login/success", [new User(curUsername + "@" + config.domain + "/" + config.resource)]);
 		},
-		"connect.login.fail": function(event, reason) {
-			Event.trigger("login.fail", [reason]);
+		"connect/login/fail": function(event, reason) {
+			Event.trigger("login/fail", [reason]);
 		},
-		"connect.login.go": function(event, username, password) {
+		"connect/login/go": function(event, username, password) {
 			curUsername = username;
 			connection.connect(username, password);
 		}
