@@ -45,7 +45,7 @@ define(function(require, exports, module) {
 					detailParams[type + "Info"] = Construct(params);
 				});
 
-				if ((avatar = $avatarPreview.data("avatar"))) {
+				if ((avatar = $avatarPreview.data("avatar") || model.detail.avatar)) {
 					detailParams.avatar = avatar;
 				}
 				var detail = new Detail(detailParams);
@@ -109,6 +109,7 @@ define(function(require, exports, module) {
 		},
 		"detail/setSelf/success": function(event, detail) {
 			model.set("detail", detail);
+			drawDetail(detail);
 			alertify.success("设置个人信息成功");
 		},
 		"detail/show": function() {

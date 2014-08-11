@@ -54,11 +54,9 @@ function boshRequest(ret) {
 			boshRes.on('data', function(data) {
 				console.log('xmpp response:' + data.toString());
 				data = data.toString();
-				parser.parseString(data, function(err, result) {
-					if (err) {
-						cache += data;
-					} else {
-						cache += data;
+				cache += data;
+				parser.parseString(cache, function(err, result) {
+					if (!err) {
 						done(null, cache);
 					}
 				});
