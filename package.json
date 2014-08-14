@@ -18,10 +18,7 @@
   "homepage": "https://github.com/LingyuCoder/HiChat2",
   "dependencies": {
     "koa": "^0.9.0",
-    "koa-body-parser": "^1.1.0",
-    "koa-router": "^3.2.3",
-    "koa-static": "^1.4.6",
-    "raw-body": "^1.3.0",
-    "xml2js": "^0.4.4"
+    "koa-openfire": "0.0.1",
+    "koa-static": "^1.4.6"
   }
 }
