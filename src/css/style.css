@@ -38,7 +38,6 @@
 #J_friend_find .g_find_rst {
 	padding: 8px 4px 8px 8px;
 	height: 48px;
-	border-radius: 16px;
 	list-style: none;
 	cursor: pointer;
 }
@@ -129,7 +128,6 @@
 	display: inline-block;
 	text-align: center;
 	cursor: pointer;
-	border-radius: 4px;
 	padding: 4px;
 	font-size: 24px;
 }
@@ -170,7 +168,6 @@
 	display: inline-block;
 	padding: 10px 10px;
 	background-color: aliceblue;
-	border-radius: 5px;
 }
 .g_chat_dlg .g_line {
 	margin: 5px 0;
@@ -197,7 +194,6 @@
 #J_friend .u_cfg span {
 	display: inline-block;
 	padding: 6px;
-	border-radius: 4px;
 	font-size: 24px;
 	-webkit-transform-origin: 50% 50%;
 }
@@ -221,9 +217,6 @@
 	background-clip: padding-box;
 	background-color: #ffffff;
 	border: 1px solid rgba(0, 0, 0, 0.3);
-	border-radius: 6px 6px 6px 6px;
-	-webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 	outline: medium none;
 	position: absolute;
@@ -248,4 +241,19 @@
 #tab_sd_avatar img {
 	height: 100px;
 	display: block;
+}
+
+.g-room {
+	padding: 1em;
+	height: 2em;
+	line-height: 2em;
+}
+
+.g-room .u-name {
+	overflow: hidden;
+	text-align: center;
+}
+
+.g-room .u-join {
+	float: right;
 }

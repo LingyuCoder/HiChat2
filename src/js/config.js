@@ -7,6 +7,6 @@ define("config", function(require, exports, module) {
 		port: "5222",
 		resource: "HICHAT2",
 		type: "binding",
-		groupChatResource: "conference"
+		groupchat: "conference"
 	};
 });

@@ -6,6 +6,7 @@ define(function(require, exports, module) {
 	require("friend");
 	require("chat");
 	require("status");
+	require("groupchat");
 	var Event = require("event");
 	var model = require("mods/model");
 	var alertify = require("alertify");
@@ -39,24 +40,22 @@ define(function(require, exports, module) {
 	$toolbar.find(".u_self").on("click", function(event) {
 		Event.trigger("detail/show");
 	});
-	
+
 	$toolbar.find(".u_exit").on("click", function(event) {
 		Event.trigger("connect/logout");
 	});
 
-	$("#J_tabs").tabs({
-	});
+	$("#J_tabs").tabs();
 
 	Event.on({
 		"detail/getSelf/success": function() {
 			$($el.dialog("widget")).find(".ui-dialog-titlebar").html($("#J_detail"));
-			
 			$el.dialog("open");
 		},
 		"login/fail": function() {
 			$el.hide();
 		},
-		"logout/success": function(){
+		"logout/success": function() {
 			$el.dialog("close");
 		}
 	});
