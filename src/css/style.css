@@ -17,7 +17,7 @@
 #J_main {
 	position: relative;
 }
-#J_main ul {
+#J_friend ul {
 	margin: 0;
 	padding: 0;
 	overflow: auto;
@@ -27,8 +27,8 @@
 	height: 48px;
 	list-style: none;
 }
-#J_friend {
-	height: 480px;
+#J_tabs {
+	height: 486px;
 }
 #J_friend .z_offline .u_avatar,
 #J_friend .z_offline .u_nick{
@@ -122,6 +122,7 @@
 
 #J_tool {
 	height: 34px;
+	margin: 0;
 }
 #J_tool li {
 	float: right;

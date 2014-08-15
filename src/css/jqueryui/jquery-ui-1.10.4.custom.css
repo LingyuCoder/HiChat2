@@ -644,16 +644,12 @@
 /* Corner radius */
 
 .ui-corner-all {
-	-webkit-border-radius: 4px; /* Safari 4 */
-	-moz-border-radius: 4px; /* Firefox 3.6 */
-	border-radius: 4px;
 }
 
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
 	-webkit-border-top-left-radius: 4px; /* Safari 4 */
-	-moz-border-radius-topleft: 4px; /* Firefox 3.6 */
 	border-top-left-radius: 4px;
 }
 
@@ -661,7 +657,6 @@
 .ui-corner-right,
 .ui-corner-tr {
 	-webkit-border-top-right-radius: 4px; /* Safari 4 */
-	-moz-border-radius-topright: 4px; /* Firefox 3.6 */
 	border-top-right-radius: 4px;
 }
 
@@ -669,7 +664,6 @@
 .ui-corner-left,
 .ui-corner-bl {
 	-webkit-border-bottom-left-radius: 4px; /* Safari 4 */
-	-moz-border-radius-bottomleft: 4px; /* Firefox 3.6 */
 	border-bottom-left-radius: 4px;
 }
 
@@ -677,7 +671,6 @@
 .ui-corner-right,
 .ui-corner-br {
 	-webkit-border-bottom-right-radius: 4px; /* Safari 4 */
-	-moz-border-radius-bottomright: 4px; /* Firefox 3.6 */
 	border-bottom-right-radius: 4px;
 }
 
@@ -695,9 +688,6 @@
 	background: #aaaaaa url("images/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
 	opacity: .30;
 	filter:Alpha(Opacity=30);
-	-webkit-border-radius: 8px; /* Safari 4 */
-	-moz-border-radius: 8px; /* Firefox 3.6 */
-	border-radius: 8px;
 }
 
 /*
@@ -849,7 +839,6 @@ fieldset[disabled] ui-button.ui-state-active {
 	padding: 10px 16px;
   font-size: 18px;
   line-height: 1.33;
-  border-radius: 6px;
 }
 
 .ui-btn-sm,
@@ -857,7 +846,6 @@ fieldset[disabled] ui-button.ui-state-active {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
-  border-radius: 3px;
 }
 
 .ui-btn-xs {
@@ -1162,9 +1150,6 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-menu .ui-menu-item a.ui-corner-all{
-	-webkit-border-radius: 0px; /* Safari 4 */
-    -moz-border-radius: 0px; /* Firefox 3.6 */
-    border-radius: 0px;
 }
 
 .ui-menu .ui-menu-item a.ui-state-focus,
@@ -1307,14 +1292,12 @@ button.ui-button::-moz-focus-inner {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: .2em;
 	width: 300px;
 	overflow: hidden;
 	outline: 0;
 	background-clip: padding-box;
 	background-color: #ffffff;
 	border: 1px solid rgba(0, 0, 0, 0.3);
-	border-radius: 6px 6px 6px 6px;
 	-webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); /* Safari 4 */
 	-moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); /* Firefox 3.6 */
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
@@ -1336,10 +1319,8 @@ button.ui-button::-moz-focus-inner {
 	font-size: 18px;
 	text-decoration: none;
 	-webkit-border-bottom-right-radius: 0; /* Safari 4 */
-	-moz-border-radius-bottomright: 0; /* Firefox 3.6 */
 	border-bottom-right-radius: 0;
 	-webkit-border-bottom-left-radius: 0; /* Safari 4 */
-	-moz-border-radius-bottomleft: 0; /* Firefox 3.6 */
 	border-bottom-left-radius: 0;
 	border-bottom: 1px solid #ccc;
 }
@@ -1409,9 +1390,6 @@ button.ui-button::-moz-focus-inner {
 	background-color: #ffffff;
 	padding: 5px 15px 5px;
 	border-top: 1px solid #ddd;
-	-webkit-border-radius: 0 0 6px 6px; /* Safari 4 */
-	-moz-border-radius: 0 0 6px 6px; /* Firefox 3.6 */
-	border-radius: 0 0 6px 6px;
 	-webkit-box-shadow: inset 0 1px 0 #ffffff; /* Safari 4 */
 	-moz-box-shadow: inset 0 1px 0 #ffffff; /* Firefox 3.6 */
 	box-shadow: inset 0 1px 0 #ffffff;
@@ -1654,18 +1632,11 @@ button.ui-button::-moz-focus-inner {
 .ui-tabs {
 	position: relative; /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	border: 0;
-	-webkit-border-radius: 0; /* Safari 4 */
-	-moz-border-radius: 0; /* Firefox 3.6 */
-	border-radius: 0;
 }
 
 .ui-tabs .ui-tabs-nav {
-	margin-bottom: 5px;
 	border: solid #ddd;
 	border-width: 0 0 1px 0;
-	-webkit-border-radius: 0; /* Safari 4 */
-	-moz-border-radius: 0; /* Firefox 3.6 */
-	border-radius: 0;
 	background: none;
 }
 
@@ -1692,9 +1663,6 @@ button.ui-button::-moz-focus-inner {
 	float: left;
 	border: 1px solid #fff;
 	border-bottom: 1px solid #ddd;
-	-webkit-border-radius: 4px 4px 0 0; /* Safari 4 */
-	-moz-border-radius: 4px 4px 0 0; /* Firefox 3.6 */
-	border-radius: 4px 4px 0 0;
 	padding: 8px 12px;
 	font-weight: normal;
 	text-decoration: none;
@@ -1730,11 +1698,7 @@ button.ui-button::-moz-focus-inner {
 /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
 .ui-tabs .ui-tabs-panel {
 	display: block;
-	margin: 1em 0;
 	border: 0;
-	-webkit-border-radius: 0; /* Safari 4 */
-	-moz-border-radius: 0; /* Firefox 3.6 */
-	border-radius: 0;
 	padding: 1px 0;
 	background: none;
 }
@@ -1781,7 +1745,6 @@ button.ui-button::-moz-focus-inner {
     -webkit-box-shadow: inset 0 1px 0 #000000; /* Safari 4 */
     -moz-box-shadow: inset 0 1px 0 #000000; /* Firefox 3.6 */
     box-shadow: inset 0 1px 0 #000000;
-    border-radius: 4px 4px 4px 4px;
 }
 
 body .ui-tooltip {
@@ -2151,9 +2114,6 @@ body .ui-tooltip {
 	border-color: #46b8da;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	-webkit-border-radius: 4px; /* Safari 4 */
-	-moz-border-radius: 4px; /* Firefox 3.6 */
-	border-radius: 4px;
 }
 
 .ui-datepicker td .ui-state-active {
@@ -2164,9 +2124,6 @@ body .ui-tooltip {
 	font-size: normal;
 	text-shadow: 0;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	-webkit-border-radius: 4px; /* Safari 4 */
-	-moz-border-radius: 4px; /* Firefox 3.6 */
-	border-radius: 4px;
 }
 
 .ui-datepicker td .ui-state-hover {
@@ -2176,9 +2133,6 @@ body .ui-tooltip {
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	border-color: #357ebd;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	-webkit-border-radius: 4px; /* Safari 4 */
-	-moz-border-radius: 4px; /* Firefox 3.6 */
-	border-radius: 4px;
 }
 
 
@@ -2204,9 +2158,6 @@ body .ui-tooltip {
 	background-image: -o-linear-gradient(top, #f5f5f5, #f9f9f9);
 	background-image: linear-gradient(to bottom, #f5f5f5, #f9f9f9);
 	background-repeat: repeat-x;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0);
 	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -2286,9 +2237,6 @@ textarea,
 	line-height: 18px;
 	color: #555555;
 	border: 1px solid #ccc;
-	-webkit-border-radius: 3px; /* Safari 4 */
-	-moz-border-radius: 3px; /* Firefox 3.6 */
-	border-radius: 3px;
 }
 
 input[type="search"] {
@@ -2315,9 +2263,6 @@ input[type="search"]::-webkit-search-decoration {
 	background-image: linear-gradient(top, #ffffff, #f5f5f5); /* CSS3 Compliant */
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0); /* IE8 */
 	border: 1px solid #ddd;
-	-webkit-border-radius: 3px; /* Safari 4 */
-	-moz-border-radius: 3px; /* Firefox 3.6 */
-	border-radius: 3px;
 	-webkit-box-shadow: inset 0 1px 0 #ffffff; /* Safari 4 */
 	-moz-box-shadow: inset 0 1px 0 #ffffff; /* Firefox 3.6 */
 	box-shadow: inset 0 1px 0 #ffffff;
@@ -2418,9 +2363,6 @@ div.wijmo-wijmenu .wijmo-wijmenu-item .wijmo-wijmenu-child {
 	margin: 0;
 	padding: 6px 0;
 	width: 160px;
-	-webkit-border-radius: 0 0 6px 6px; /* Safari 4 */
-	-moz-border-radius: 0 0 6px 6px; /* Firefox 3.6 */
-	border-radius: 0 0 6px 6px;
 	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Safari 4 */
 	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Firefox 3.6 */
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -2436,9 +2378,6 @@ div.wijmo-wijmenu .wijmo-wijmenu-item {
 	line-height: 19px;
 	padding: 10px 10px 11px;
 	border: 0;
-	-webkit-border-radius: 0; /* Safari 4 */
-	-moz-border-radius: 0; /* Firefox 3.6 */
-	border-radius: 0;
 }
 
 div.wijmo-wijmenu .wijmo-wijmenu-child .wijmo-wijmenu-link {
@@ -2470,7 +2409,6 @@ div.wijmo-wijmenu .wijmo-wijmenu-child .wijmo-wijmenu-text {
 	-moz-transition: none 0s ease 0s;
 	background-color: rgba(255, 255, 255, 0.3);
 	border: 1px solid #111111;
-	border-radius: 4px 4px 4px 4px;
 	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.25); /* Safari 4 */
 	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.25); /* Firefox 3.6 */
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.25);

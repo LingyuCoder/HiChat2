@@ -44,9 +44,13 @@ define(function(require, exports, module) {
 		Event.trigger("connect/logout");
 	});
 
+	$("#J_tabs").tabs({
+	});
+
 	Event.on({
 		"detail/getSelf/success": function() {
-			$($el.dialog("widget")).find(".ui-widget-header").html($("#J_detail"));
+			$($el.dialog("widget")).find(".ui-dialog-titlebar").html($("#J_detail"));
+			
 			$el.dialog("open");
 		},
 		"login/fail": function() {
