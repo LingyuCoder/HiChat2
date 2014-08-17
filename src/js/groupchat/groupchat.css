@@ -1,0 +1,142 @@
+.g_room {
+	padding: 1em;
+	height: 2em;
+	line-height: 2em;
+}
+
+.g_room .u_name {
+	overflow: hidden;
+	text-align: center;
+}
+
+.g_room .u_btn {
+	float: right;
+}
+
+.g_gc_dlg .g_left{
+	width: 68%;
+	float: left;
+	height: 100%;
+	padding-right: 2%;
+	border-right: 1px solid #DDD;
+}
+
+.g_gc_dlg .g_right {
+	overflow: hidden;
+	height: 100%;
+	padding-left: 2%;
+}
+
+.g_gc_dlg .m_msg {
+	height: 80%;
+	overflow: auto;
+}
+
+.g_gc_dlg .g_ipt {
+	height: 20%;
+}
+
+.g_gc_dlg .g_ipt .u_ipt {
+	resize: none;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.g_gc_dlg .u_subject {
+	height: 20%;
+	text-align: center;
+	border-bottom: 1px solid #DDD;
+}
+
+.g_gc_dlg .m_user {
+	height: 80%;
+	text-align: center;
+}
+
+.g_gc_dlg .m_user .g_user {
+	height: 2em;
+	line-height: 2em;
+	cursor: pointer;
+}
+
+.g_gc_dlg .m_user .g_user:hover {
+	background-color: #DDD
+}
+
+.g_gc_dlg .u_affi {
+	float: right;
+}
+
+.g_gc_dlg .u_affi_none {
+	visibility: hidden;
+}
+
+.g_gc_dlg .u_affi_member {
+	color: #000;
+}
+	
+.g_gc_dlg .u_affi_admin {
+	color: #428bca;
+}
+
+.g_gc_dlg .u_affi_owner {
+	color: #d9534f;
+}
+
+.m_gc_cfg {
+	float: left;
+	margin: 0.5em 0;
+	line-height: 2em;
+}
+
+.m_gc_cfg .u_cfg {
+	padding: .3em;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.m_gc_cfg .u_cfg:hover {
+	background-color: #404040;
+	color: #fff;
+}
+
+.g_gc_menu {
+	position: absolute;
+	z-index: 999999;
+}
+
+.g_gc_menu .u_change_affi {
+	padding: .3em 1em;
+	cursor: pointer;
+}
+
+.g_gc_menu .u_change_affi:hover {
+	background-color: #DDD;
+}
+
+
+
+.g_gc_dlg .u_msg{
+	display: inline-block;
+	padding: 10px 10px;
+	background-color: aliceblue;
+}
+
+.g_gc_dlg .g_line {
+	margin: 5px 0;
+}
+
+.g_gc_dlg .g_line p {
+	margin: 0;
+}
+
+.g_gc_dlg .u_self {
+	float: right;
+	margin-right: 1em;
+}
+.g_gc_dlg .u_other {
+	float: left;
+	max-width: 90%;
+	word-wrap: break-word;
+}

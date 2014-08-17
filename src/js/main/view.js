@@ -1,15 +1,19 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
+	var Event = require("event");
+	var alertify = require("alertify");
+
+	var model = require("../mods/model");
+	
+	require("detail/view");
+	require("friend/view");
+	require("chat/view");
+	require("status/view");
+	require("groupchat/view");
+	require("./main.css");
+
 	var $el = $("#J_main");
 	var $toolbar = $('#J_tool');
-	require("detail");
-	require("friend");
-	require("chat");
-	require("status");
-	require("groupchat");
-	var Event = require("event");
-	var model = require("mods/model");
-	var alertify = require("alertify");
 
 	alertify.set({
 		labels: {

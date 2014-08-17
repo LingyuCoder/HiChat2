@@ -1,14 +1,17 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
 	var Event = require("event");
-	var model = require("mods/model");
-	var User = require("mods/user");
 	var config = require("config");
 	var RESOURCE = require("resource");
 	var alertify = require("alertify");
 	var util = require("util");
-	var Group = require("mods/group");
-	require("connect/friend");
+
+	var model = require("../mods/model");
+	var User = require("../mods/user");
+	var Group = require("../mods/group");
+
+	require("./connect");
+	require("./friend.css");
 
 
 	var $findDlg = $("#J_friend_find");

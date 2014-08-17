@@ -1,8 +1,9 @@
 define(function(require, exports, module) {
 	var Event = require("event");
-	var connection = require("connect/connection");
+	var connection = require("connection");
+	
 	var config = require("config");
-	var User = require("mods/user");
+	var User = require("../mods/user");
 	var curUsername;
 
 	Event.on({

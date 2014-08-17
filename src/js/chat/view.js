@@ -2,10 +2,14 @@ define(function(require, exports, module) {
 	var Event = require("event");
 	var $ = require("jquery");
 	var RESOURCE = require("resource");
-	var model = require("mods/model");
-	var Message = require("mods/message");
-	require("connect/chat");
-	var timeformat = require("widgets/timeformat");
+	var timeformat = require("timeformat");
+
+	var model = require("../mods/model");
+	var Message = require("../mods/message");
+
+	require("./connect");
+	require("./chat.css");
+
 	var $chat = $('<div class="g_chat_dlg">' + '<div class="g_chat_info">' + '<img class="u_avatar" src="' + RESOURCE.DEFAULT_AVATAR + '"/>' + '<div class="u_status"></div>' + '<div class="u_nick"></div>' + '</div>' + '<textarea class="u_msg_ipt"></textarea>' + '</div>');
 	var $msgTpl = $('<div class="clearfix g_line"><span class="u_msg"></span></div>');
 

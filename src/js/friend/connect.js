@@ -1,10 +1,13 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
 	var Event = require("event");
-	var connection = require("connect/connection").getConnection();
-	var friendPack = require("package/friend");
-	var detailPack = require("package/detail");
+
+	var connection = require("connection").getConnection();
+
+	var friendPack = require("./pack");
+
 	var sendedSubscribe = {};
+
 	Event.on({
 		"connect/friend/list": function() {
 			connection.sendIQ(friendPack.list(), {
@@ -18,18 +21,7 @@ define(function(require, exports, module) {
 			});
 		},
 		"connect/friend/detail": function(event, friend) {
-			connection.sendIQ(detailPack.getOther(friend), {
-				error_handler: function(error) {
-					Event.trigger("friend/detail/fail", [error]);
-				},
-				result_handler: function(detail) {
-					detail = detailPack.parse(detail);
-					detail.jid = friend.jid;
-					detail.domain = friend.domain;
-					detail.resource = friend.resource;
-					Event.trigger("friend/detail/success", [detail]);
-				}
-			});
+			Event.trigger("connect/detail/other", [friend]);
 		},
 		"connect/friend/presence": function(event, user) {
 			connection.send(friendPack.getFriendPresence(user));

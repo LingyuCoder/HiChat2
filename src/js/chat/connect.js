@@ -1,9 +1,11 @@
 define(function(require, exports, module) {
 	var Event = require("event");
-	var chatPack = require("package/chat");
-	var ChatStatus = require("mods/chatstatus");
-	var Message = require("mods/message");
-	var connection = require("connect/connection").getConnection();
+	var connection = require("connection").getConnection();
+	
+	var ChatStatus = require("../mods/chatstatus");
+	var Message = require("../mods/message");
+	
+	var chatPack = require("./pack");
 
 	Event.on({
 		"connect/message/send": function(event, message) {

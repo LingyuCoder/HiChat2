@@ -1,9 +1,11 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
 	var Event = require("event");
-	var model = require("mods/model");
-	var User = require("mods/user");
-	var Group = require("mods/group");
+
+	var model = require("../mods/model");
+	var User = require("../mods/user");
+	var Group = require("../mods/group");
+
 	module.exports = {
 		list: function() {
 			var aIQ = new JSJaCIQ(),

@@ -1,0 +1,169 @@
+#J_friend ul {
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+}
+#J_detail {
+	margin: 0 5px;
+	height: 48px;
+	list-style: none;
+}
+#J_tabs {
+	height: 486px;
+}
+#J_friend .z_offline .u_avatar,
+#J_friend .z_offline .u_nick{
+	opacity: 0.5;
+}
+#J_friend .g_friend,
+#J_friend_find .g_find_rst {
+	padding: 8px 4px 8px 8px;
+	height: 48px;
+	list-style: none;
+	cursor: pointer;
+}
+#J_friend .u_cfg,
+#J_friend_find .u_cfg{
+	position: relative;
+	float: right;
+	height: 48px;
+	text-align: center;
+	font-size: 56px;
+	line-height: 24px;
+	overflow: visible;
+}
+#J_friend .g_friend:hover {
+	background-color: #f0f0f0;
+}
+#J_detail .u_avatar,
+#J_friend .g_friend .u_avatar,
+.g_chat_info .u_avatar,
+#J_friend_find .u_avatar {
+	position: relative;
+	float: left;
+	height: 48px;
+	width: 48px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+#J_friend .u_remind_hide {
+	display: none;
+}
+
+#J_friend .u_remind {
+	position: absolute;
+	z-index: 1;
+	top: -6px;
+	left: -8px;
+	
+	min-width: 1em;
+	background: #c7254e;
+	border-radius: 50%;
+	color: #f9f2f4;
+	text-align: center;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#J_friend .u_status {
+	position: absolute;
+	z-index: 1;
+	bottom: -6px;
+	left: -8px;
+	height: 1em;
+	width: 1em;
+	border-radius: 50%;
+}
+
+#J_friend .u_status_ {
+	display: none;
+}
+#J_friend .u_status_chat {
+	background-color: #3c763d;
+}
+
+#J_friend .u_status_away {
+	background-color: #8a6d3b;
+}
+
+#J_friend .u_status_dnd {
+	background-color: #a94442;
+}
+
+#J_detail .u_nick,
+#J_friend .g_friend .u_nick,
+.g_chat_info .u_nick,
+#J_friend_find .u_nick {
+	height: 100%;
+	overflow: hidden;
+	text-align: center;
+	line-height: 48px;
+}
+
+#J_friend_detail dt,
+#J_friend_detail dd {
+	height: 30px;
+	line-height: 30px;
+}
+#J_friend_detail dt {
+	float: left;
+	width: 80px;
+	text-align: right;
+}
+#J_friend_detail dd {
+	overflow: hidden;
+	text-align: left;
+	padding-left: 10px;
+}
+
+#J_friend .u_cfg span {
+	display: inline-block;
+	padding: 6px;
+	font-size: 24px;
+	-webkit-transform-origin: 50% 50%;
+}
+#J_friend .u_cfg:hover span {
+	-webkit-animation: u_cfg_rotate linear 3s infinite;
+}
+@-webkit-keyframes u_cfg_rotate {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+#J_friend .u_cfg:hover .u_cfg_list {
+	display: block;
+}
+#J_friend .u_cfg .u_cfg_list {
+	display: none;
+	padding: .2em 0;
+	background-clip: padding-box;
+	background-color: #ffffff;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	outline: medium none;
+	position: absolute;
+	right: 0;
+	z-index: 9999;
+	width: 100px;
+	top: 50%;
+}
+#J_friend .u_cfg .u_cfg_item {
+	padding: 0 .2em;
+	font-size: 16px;
+	text-align: center;
+}
+#J_friend .u_cfg .u_cfg_item:hover {
+	background: #DDD;
+}
+
+.u_status_sel {
+	float: left
+}
+
+#tab_sd_avatar img {
+	height: 100px;
+	display: block;
+}

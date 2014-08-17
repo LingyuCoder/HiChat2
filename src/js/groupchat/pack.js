@@ -1,8 +1,10 @@
 define(function(require, exports, module) {
 	var config = require("config");
-	var Room = require("mods/room");
-	var RoomUser = require("mods/roomuser");
-	var GroupchatMessage = require("mods/groupchatmessage");
+
+	var Room = require("../mods/room");
+	var RoomUser = require("../mods/roomuser");
+	var GroupchatMessage = require("../mods/groupchatmessage");
+
 	var rMucFeature = /muc_(.*)/;
 
 	var rMucField = /muc#roominfo_(.*)/;

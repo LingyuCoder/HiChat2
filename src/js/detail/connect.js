@@ -1,8 +1,10 @@
 define(function(require, exports, module) {
 	var Event = require("event");
-	var connection = require("connect/connection").getConnection();
-	var pack = require("package/detail");
+	var connection = require("connection").getConnection();
+
 	var model = require("mods/model");
+
+	var pack = require("./pack");
 
 	Event.on({
 		"connect/detail/getSelf": function() {
@@ -28,6 +30,20 @@ define(function(require, exports, module) {
 				},
 				result_handler: function(aJSJaCPacket) {
 					Event.trigger("detail/setSelf/success", [detail]);
+				}
+			});
+		},
+		"connect/detail/other": function(event, friend) {
+			connection.sendIQ(pack.getOther(friend), {
+				error_handler: function(error) {
+					Event.trigger("friend/detail/fail", [error]);
+				},
+				result_handler: function(detail) {
+					detail = pack.parse(detail);
+					detail.jid = friend.jid;
+					detail.domain = friend.domain;
+					detail.resource = friend.resource;
+					Event.trigger("friend/detail/success", [detail]);
 				}
 			});
 		}

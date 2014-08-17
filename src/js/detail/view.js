@@ -1,15 +1,17 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
 	var RESOURCE = require("resource");
-	var model = require("mods/model");
 	var Event = require("event");
-	require("connect/detail");
-	var HomeInfo = require("mods/homeinfo");
-	var WorkInfo = require("mods/workinfo");
-	var PersonalInfo = require("mods/personalinfo");
-	var Avatar = require("mods/avatar");
-	var Detail = require("mods/detail");
 	var alertify = require("alertify");
+
+	var model = require("../mods/model");
+	var HomeInfo = require("../mods/homeinfo");
+	var WorkInfo = require("../mods/workinfo");
+	var PersonalInfo = require("../mods/personalinfo");
+	var Avatar = require("../mods/avatar");
+	var Detail = require("../mods/detail");
+	
+	require("./connect");
 
 	var $el = $("#J_detail");
 	var $selfDlg = $("#J_self_detail");

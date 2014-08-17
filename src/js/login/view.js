@@ -1,10 +1,12 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
-	require("ui");
-	var Event = require("event");
-	var Connect = require("connect/login");
-	var model = require("mods/model");
 	var alertify = require("alertify");
+	var Event = require("event");
+	var model = require("../mods/model");
+
+	require("./connect");
+	require("./login.css");
+	
 	var $el = $("#J_login");
 
 	$el.dialog({

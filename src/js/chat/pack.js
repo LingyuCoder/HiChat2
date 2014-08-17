@@ -1,8 +1,10 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
-	var User = require("mods/user");
-	var Message = require("mods/message");
-	var ChatStatus = require("mods/chatstatus");
+
+	var User = require("../mods/user");
+	var Message = require("../mods/message");
+	var ChatStatus = require("../mods/chatstatus");
+	
 	module.exports = {
 		sendMessage: function(message) {
 			var aMessage = new JSJaCMessage();

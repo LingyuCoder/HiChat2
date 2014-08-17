@@ -2,14 +2,19 @@ define(function(require, exports, module) {
 	var $ = require("jquery");
 	var Event = require("event");
 	var alertify = require("alertify");
-	var model = require("mods/model");
-	var RoomUser = require("mods/roomuser");
+
+	require("./connect");
+	require("./groupchat.css");
+
+	var model = require("../mods/model");
+	var RoomUser = require("../mods/roomuser");
+
 	var $el = $("#J_groupchat");
 	var $roomTpl = $('<div class="g_room"><div class="u_name"></div></div>');
 	var $roomDlgTpl = $('<div class="g_gc_dlg"><div class="g_left"><div class="m_msg"></div><div class="g_ipt"><textarea class="u_ipt"></textarea></div></div><div class="g_right"><div class="u_subject"></div><div class="m_user"></div></div></div>');
 	var $msgTpl = $('<div class="clearfix g_line"><span class="u_msg"></span></div>');
 	var $menuTpl = $('<ul></ul>');
-	require("connect/groupchat");
+
 
 	function drawRooms(rooms) {
 		$el.html("");
@@ -35,6 +40,7 @@ define(function(require, exports, module) {
 								self: roomUser,
 								roomUsers: []
 							};
+							console.log(model.joinedRooms);
 							drawRoomDialog(roomUser);
 							Event.trigger("connect/groupchat/joinRoom", [roomUser, psw]);
 						}
@@ -148,7 +154,8 @@ define(function(require, exports, module) {
 	}
 
 	function removeUserFromModel(roomUser) {
-		var users = model.joinedRooms[roomUser.room.toString()].roomUsers;
+		var joinedRoom = model.joinedRooms[roomUser.room.toString()];
+		var users = joinedRoom && joinedRoom.roomUsers;
 		if (users) {
 			for (var i = users.length; i--;) {
 				if (users[i].toString() === roomUser.toString()) {
@@ -177,7 +184,7 @@ define(function(require, exports, module) {
 		var room = self.room;
 		var $room = $("#J_gc_dlg_" + room.toSafeString());
 		var $buttonPanel = $(".ui-dialog-buttonpane", $room.dialog("widget"));
-		$(".m_cfg_panel", $buttonPanel).remove();
+		$(".m_gc_cfg", $buttonPanel).remove();
 
 		var $cfgPanel = $('<div class="m_gc_cfg"></div>');
 		$cfgPanel.append('<span class="iconfont u_cfg u_setNick">&#xe603;</span>');
@@ -340,7 +347,6 @@ define(function(require, exports, module) {
 			}
 		},
 		"groupchat/presence/changeNickname": function(event, roomUser, nickname) {
-			console.log(roomUser, nickname);
 			var room = roomUser.room;
 			var joinedRoom = model.joinedRooms[room.toString()];
 			removeUserFromModel(roomUser);

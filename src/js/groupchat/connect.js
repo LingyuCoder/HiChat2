@@ -1,7 +1,8 @@
 define(function(require, exports, module) {
 	var Event = require("event");
-	var connection = require("connect/connection").getConnection();
-	var groupchatPack = require("package/groupchat");
+	var connection = require("connection").getConnection();
+	
+	var groupchatPack = require("./pack");
 
 	Event.on({
 		"connect/groupchat/listRoom": function() {

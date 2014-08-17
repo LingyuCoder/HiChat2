@@ -1,14 +1,18 @@
 define(function(require, exports, module) {
 	var $ = require("jquery");
-	var $el = $("#J_status");
 	var Event = require("event");
-	var model = require("mods/model");
+	
+	var model = require("../mods/model");
+
+	require("./connect");
+	
+	
 	var statusMap = {
 		"chat": "在线",
 		"away": "离开",
 		"dnd": "忙碌"
 	};
-	require("connect/status");
+	var $el = $("#J_status");
 
 	$el.on("change", function() {
 		var newStatus = $el.val();

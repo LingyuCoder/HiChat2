@@ -1,0 +1,46 @@
+.u_msg_ipt {
+	width: 100%;
+	height: 60px;
+	display: block;
+	resize: none;
+}
+.g_chat_info {
+	height: 48px;
+}
+.g_chat_info .u_status {
+	float: right;
+	height: 48px;
+	line-height: 48px;
+}
+
+.g_chat_dlg .u_msg {
+	display: inline-block;
+	padding: 10px 10px;
+	background-color: aliceblue;
+}
+
+.g_chat_dlg .g_line {
+	margin: 5px 0;
+}
+
+.g_chat_dlg .g_line p {
+	margin: 0;
+}
+
+.g_chat_dlg .u_self {
+	float: right;
+	margin-right: 1em;
+}
+.g_chat_dlg .u_other {
+	float: left;
+	max-width: 90%;
+	word-wrap: break-word;
+}
+.clearfix:after {
+	display: block;
+	clear: both;
+	width: 100%;
+	height: 0;
+	visibility: hidden;
+	content: "";
+}
