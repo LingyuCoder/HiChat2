@@ -77,6 +77,18 @@ define(function(require, exports, module) {
 					Event.trigger("friend/nick/set/success", [user, nick]);
 				}
 			});
+		},
+		"connect/friend/presence/receive": function(event, presence) {
+			presence = friendPack.parsePresence(presence);
+			if (presence.type === "available" || presence.type === "unavailable") {
+				Event.trigger("friend/presence/" + presence.type, [presence.user]);
+				Event.trigger("status/friend/receive", [presence.user, presence.show, presence.status]);
+			} else {
+				Event.trigger("friend/" + presence.type + "/receive", [presence.user]);
+				if (presence.type === "unsubscribe") {
+					Event.trigger("__connect/subscribe/remove", [presence.user]);
+				}
+			}
 		}
 	});
 });

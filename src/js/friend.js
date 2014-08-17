@@ -63,7 +63,7 @@ define(function(require, exports, module) {
 		var $nick = $friend.find(".u_nick");
 		$friend.find(".u_remind").hide();
 		$nick.text(user.toString());
-		var id = "J_friend_" + user.jid + "_" + user.domain;
+		var id = "J_friend_" + user.toSafeString();
 		if ($("#" + id).length > 0) {
 			return;
 		}
@@ -75,7 +75,7 @@ define(function(require, exports, module) {
 
 	function deleteFriend(user) {
 		$.each(["J_friend_", "J_f_cfg_", "J_f_detail_"], function(index, item) {
-			var $dlg = $("#" + item + user.jid + "_" + user.domain);
+			var $dlg = $("#" + item + user.toSafeString());
 			$dlg.dialog().dialog("destroy");
 			$dlg.remove();
 		});
@@ -83,7 +83,7 @@ define(function(require, exports, module) {
 
 	function initCfg(user) {
 		var $cfg = $cfgTpl.clone();
-		var id = "J_f_cfg_" + user.jid + "_" + user.domain;
+		var id = "J_f_cfg_" + user.toSafeString();
 		if ($("#" + id).length > 0) {
 			return;
 		}
@@ -100,13 +100,13 @@ define(function(require, exports, module) {
 	}
 
 	function drawFriendDetail(detail) {
-		var $friend = $("#J_friend_" + detail.jid + "_" + detail.domain);
+		var $friend = $("#J_friend_" + detail.toSafeString());
 		if ($friend.length === 0) {
 			return;
 		}
 		var $avatar = $friend.find(".u_avatar");
 		var $nick = $friend.find(".u_nick");
-		var $cfg = $("#J_f_cfg_" + detail.jid + "_" + detail.domain);
+		var $cfg = $("#J_f_cfg_" + detail.toSafeString());
 		if (detail.hasAvatar()) {
 			$avatar.find("img").attr("src", detail.avatar.toString());
 		}
@@ -144,7 +144,7 @@ define(function(require, exports, module) {
 	function drawSubscribeRequest(user) {
 		var $dlg = $subReqTpl.clone();
 		$dlg.text(user.toString() + "请求加您为好友");
-		$dlg.attr("id", "J_req_dlg_" + user.jid + "_" + user.domain);
+		$dlg.attr("id", "J_req_dlg_" + user.toSafeString());
 		$dlg.dialog({
 			autoOpen: true,
 			closeOnEscape: true,
@@ -188,7 +188,7 @@ define(function(require, exports, module) {
 			$group = $('<div id="J_group_' + name + '" class="J_group"></div>');
 			$accordion.append($groupName).append($group);
 			$.each(group.list, function(index, user) {
-				$group.append($('#J_friend_' + user.jid + '_' + user.domain));
+				$group.append($('#J_friend_' + user.toSafeString()));
 			});
 		});
 		$accordion.accordion({
@@ -206,7 +206,7 @@ define(function(require, exports, module) {
 			$group = $('<div id="J_group_' + groupName + '" class="J_group"></div>');
 			$accordion.append($groupName).append($group);
 		}
-		$group.append($('#J_friend_' + user.jid + '_' + user.domain));
+		$group.append($('#J_friend_' + user.toSafeString()));
 		$group = $("#J_group_" + oldName);
 		if (!groups[oldName] || groups[oldName].count() === 0) {
 			$group.prev().remove();
@@ -221,7 +221,7 @@ define(function(require, exports, module) {
 		$.each(nicks, function(jid, nick) {
 			var user = new User(jid);
 			var $friend;
-			if (nicks[jid] && ($friend = $('#J_friend_' + user.jid + '_' + user.domain)).length > 0) {
+			if (nicks[jid] && ($friend = $('#J_friend_' + user.toSafeString())).length > 0) {
 				$friend.find(".u_nick").text(nicks[jid]);
 			}
 		});
@@ -229,7 +229,7 @@ define(function(require, exports, module) {
 
 	function changeNick(friend, nick) {
 		var $friend;
-		if (($friend = $('#J_friend_' + friend.jid + '_' + friend.domain)).length > 0) {
+		if (($friend = $('#J_friend_' + friend.toSafeString())).length > 0) {
 			$friend.find(".u_nick").text(nick);
 		}
 	}
@@ -256,7 +256,7 @@ define(function(require, exports, module) {
 			Event.trigger("connect/friend/presence");
 		},
 		"friend/presence/available": function(event, user) {
-			var $friend = $("#J_friend_" + user.jid + "_" + user.domain);
+			var $friend = $("#J_friend_" + user.toSafeString());
 			if ($friend.length === 0) {
 				return;
 			}
@@ -264,7 +264,7 @@ define(function(require, exports, module) {
 			$friend.parent().prepend($friend);
 		},
 		"friend/presence/unavailable": function(event, user) {
-			var $friend = $("#J_friend_" + user.jid + "_" + user.domain);
+			var $friend = $("#J_friend_" + user.toSafeString());
 			if ($friend.length === 0) {
 				return;
 			}
@@ -338,7 +338,7 @@ define(function(require, exports, module) {
 			changeNick(friend, nick);
 		},
 		"friend/message/remind": function(event, friend, count) {
-			var $friend = $("#J_friend_" + friend.jid + "_" + friend.domain);
+			var $friend = $("#J_friend_" + friend.toSafeString());
 			if (count === 0) {
 				$friend.find(".u_remind").hide();
 			} else {

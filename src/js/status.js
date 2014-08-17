@@ -26,7 +26,7 @@ define(function(require, exports, module) {
 			model.set("status", "chat");
 		},
 		"status/friend/receive": function(event, user, show, status) {
-			var $friendStatus = $("#J_friend_" + user.jid + "_" + user.domain).find(".u_status");
+			var $friendStatus = $("#J_friend_" + user.toSafeString()).find(".u_status");
 			$friendStatus.attr("class", "u_status u_status_" + show);
 		}
 	});

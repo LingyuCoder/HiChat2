@@ -20,6 +20,9 @@ define(function(require, exports, module) {
 		},
 		toString: function() {
 			return this.jid + "@" + this.domain;
+		},
+		toSafeString: function() {
+			return this.jid + "_" + this.domain;
 		}
 	});
 	module.exports = User;

@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 			EventHandler.off.apply(EventHandler, arguments);
 		},
 		trigger: function() {
-			console.log(arguments[0]);
+			//console.log(arguments[0]);
 			try {
 				EventHandler.trigger.apply(EventHandler, arguments);
 			} catch (e) {

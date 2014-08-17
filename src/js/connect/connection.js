@@ -2,11 +2,6 @@ define(function(require, exports, module) {
 	require("jsjac");
 	var config = require("config");
 	var Event = require("event");
-	var friendPack = require("package/friend");
-	var chatPack = require("package/chat");
-	var statusPack = require("package/status");
-	var ChatStatus = require("mods/chatstatus");
-	var Message = require("mods/message");
 
 	var connectionConfig = {
 		httpbase: config.httpbase,
@@ -19,26 +14,17 @@ define(function(require, exports, module) {
 		},
 		onMessage: function(aMessage) {
 			if (aMessage.getType() === "groupchat") {
-				//TODO: 群聊消息接受
-			} else if (aMessage.getType() === "chat") {
-				var result = chatPack.parse(aMessage);
-				if (result instanceof Message) {
-					Event.trigger("message/receive", [result]);
-				} else if (result instanceof ChatStatus) {
-					Event.trigger("message/status", [result]);
-				}
+				Event.trigger("connect/groupchat/message/receive", [aMessage]);
+			} else {
+				Event.trigger("connect/message/receive", [aMessage]);
 			}
 		},
 		onPresence: function(presence) {
-			presence = friendPack.parsePresence(presence);
-			if (presence.type === "available" || presence.type === "unavailable") {
-				Event.trigger("friend/presence/" + presence.type, [presence.user]);
-				Event.trigger("status/friend/receive", [presence.user, presence.show, presence.status]);
+			var $presence = $(presence.xml());
+			if ($presence.find("x").attr("xmlns") === NS_MUC_USER) {
+				Event.trigger("connect/groupchat/presence/receive", [presence]);
 			} else {
-				Event.trigger("friend/" + presence.type + "/receive", [presence.user]);
-				if (presence.type === "unsubscribe") {
-					Event.trigger("__connect/subscribe/remove", [presence.user]);
-				}
+				Event.trigger("connect/friend/presence/receive", [presence]);
 			}
 		},
 		onError: function(e) {

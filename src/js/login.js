@@ -42,13 +42,7 @@ define(function(require, exports, module) {
 		},
 		"logout/success": function() {
 			$el.dialog("open");
-			model.self = null;
-			model.detail = null
-			model.status = null;
-			model.friends = null;
-			model.groups = null;
-			model.nicks = null;
-			model.history = null;
+			model.reset();
 		}
 	});
 });

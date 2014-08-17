@@ -9,6 +9,7 @@ define(function(require, exports, module) {
 		this.groups;
 		this.nicks;
 		this.history;
+		this.reset();
 	}
 
 	$.extend(Model.prototype, {
@@ -19,6 +20,17 @@ define(function(require, exports, module) {
 		get: function(propName) {
 			var self = this;
 			return self[propName];
+		},
+		reset: function() {
+			this.self = null;
+			this.detail = null;
+			this.status = null;
+			this.friends = [];
+			this.groups = {};
+			this.nicks = {};
+			this.history = {};
+			this.rooms = [];
+			this.joinedRooms = {};
 		}
 	});
 

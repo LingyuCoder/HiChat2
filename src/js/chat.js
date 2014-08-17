@@ -30,8 +30,8 @@ define(function(require, exports, module) {
 				text: "发送",
 				click: function() {
 					var content = $.trim($textarea.val());
-					var message = new Message(content, model.get("self").toString(), detail.toString(), new Date());
 					if (content) {
+						var message = new Message(content, model.get("self").toString(), detail.toString(), new Date());
 						Event.trigger("connect/message/send", [message]);
 						drawMessage(message);
 						$textarea.val("");

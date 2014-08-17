@@ -22,7 +22,8 @@ define(function(require, exports, module) {
 			return new User(this.jid + "@" + this.domain + "/" + this.resource);
 		},
 		toString: User.prototype.toString,
-		toFullString: User.prototype.toFullString
+		toFullString: User.prototype.toFullString,
+		toSafeString: User.prototype.toSafeString
 	});
 	module.exports = Detail;
 });

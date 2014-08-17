@@ -20,5 +20,14 @@ define(function(require, exports, module) {
 			$.extend(self, detail);
 		}
 	}
+
+	$.extend(Room.prototype, {
+		toString: function() {
+			return this.roomId + '@' + this.resource + '.' + this.domain;
+		},
+		toSafeString: function() {
+			return this.roomId + "_" + this.resource + "_" + this.domain;
+		}
+	});
 	module.exports = Room;
 });
