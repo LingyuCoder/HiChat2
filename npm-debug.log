@@ -1,0 +1,276 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'koa-less2' ]
+2 info using npm@1.4.9
+3 info using node@v0.11.13
+4 verbose node symlink D:\Program Files\nodejs\\node.exe
+5 warn package.json koa-less2@0.0.1 No repository field.
+6 verbose readDependencies using package.json deps
+7 verbose cache add [ 'koa-less2', null ]
+8 verbose cache add name=undefined spec="koa-less2" args=["koa-less2",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'koa-less2',
+9 verbose parsed url   path: 'koa-less2',
+9 verbose parsed url   href: 'koa-less2' }
+10 silly lockFile 7db373f7-koa-less2 koa-less2
+11 verbose lock koa-less2 C:\Users\wly\AppData\Roaming\npm-cache\7db373f7-koa-less2.lock
+12 silly lockFile 7db373f7-koa-less2 koa-less2
+13 silly lockFile 7db373f7-koa-less2 koa-less2
+14 verbose addNamed [ 'koa-less2', '' ]
+15 verbose addNamed [ null, '*' ]
+16 silly lockFile d94d15c4-koa-less2 koa-less2@
+17 verbose lock koa-less2@ C:\Users\wly\AppData\Roaming\npm-cache\d94d15c4-koa-less2.lock
+18 silly addNameRange { name: 'koa-less2', range: '*', hasData: false }
+19 verbose url raw koa-less2
+20 verbose url resolving [ 'https://registry.npmjs.org/', './koa-less2' ]
+21 verbose url resolved https://registry.npmjs.org/koa-less2
+22 info trying registry request attempt 1 at 23:34:49
+23 http GET https://registry.npmjs.org/koa-less2
+24 http 200 https://registry.npmjs.org/koa-less2
+25 silly registry.get cb [ 200,
+25 silly registry.get   { date: 'Mon, 18 Aug 2014 15:34:52 GMT',
+25 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+25 silly registry.get     etag: '"U3O45KZWRYSKSST89KB0GJP7"',
+25 silly registry.get     'content-type': 'application/json',
+25 silly registry.get     'cache-control': 'max-age=60',
+25 silly registry.get     'content-length': '2667',
+25 silly registry.get     'accept-ranges': 'bytes',
+25 silly registry.get     via: '1.1 varnish',
+25 silly registry.get     age: '81',
+25 silly registry.get     'x-served-by': 'cache-ty66-TYO',
+25 silly registry.get     'x-cache': 'MISS',
+25 silly registry.get     'x-cache-hits': '0',
+25 silly registry.get     'x-timer': 'S1408376092.052024,VS0,VE460',
+25 silly registry.get     vary: 'Accept',
+25 silly registry.get     connection: 'close' } ]
+26 silly addNameRange number 2 { name: 'koa-less2', range: '*', hasData: true }
+27 silly addNameRange versions [ 'koa-less2', [ '0.0.1' ] ]
+28 verbose addNamed [ 'koa-less2', '0.0.1' ]
+29 verbose addNamed [ '0.0.1', '0.0.1' ]
+30 silly lockFile 1ab28ee9-koa-less2-0-0-1 koa-less2@0.0.1
+31 verbose lock koa-less2@0.0.1 C:\Users\wly\AppData\Roaming\npm-cache\1ab28ee9-koa-less2-0-0-1.lock
+32 silly lockFile 910cc6c7-rg-koa-less2-koa-less2-0-0-1-tgz https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz
+33 verbose lock https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz C:\Users\wly\AppData\Roaming\npm-cache\910cc6c7-rg-koa-less2-koa-less2-0-0-1-tgz.lock
+34 verbose addRemoteTarball [ 'https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz',
+34 verbose addRemoteTarball   'e14da68cc3b7c9968474219c435797060f9e341a' ]
+35 info retry fetch attempt 1 at 23:34:51
+36 verbose fetch to= c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376091291-0.41063759778626263\tmp.tgz
+37 http GET https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz
+38 http 200 https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz
+39 verbose tar unpack c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376091291-0.41063759778626263\tmp.tgz
+40 silly lockFile 04595965-pm-cache-koa-less2-0-0-1-package tar://C:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package
+41 verbose lock tar://C:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package C:\Users\wly\AppData\Roaming\npm-cache\04595965-pm-cache-koa-less2-0-0-1-package.lock
+42 silly lockFile f88ca0b3-1291-0-41063759778626263-tmp-tgz tar://c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376091291-0.41063759778626263\tmp.tgz
+43 verbose lock tar://c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376091291-0.41063759778626263\tmp.tgz C:\Users\wly\AppData\Roaming\npm-cache\f88ca0b3-1291-0-41063759778626263-tmp-tgz.lock
+44 silly gunzTarPerm modes [ '755', '644' ]
+45 silly gunzTarPerm extractEntry package.json
+46 silly gunzTarPerm extractEntry .npmignore
+47 silly gunzTarPerm extractEntry README.md
+48 silly gunzTarPerm extractEntry index.js
+49 silly lockFile 04595965-pm-cache-koa-less2-0-0-1-package tar://C:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package
+50 silly lockFile 04595965-pm-cache-koa-less2-0-0-1-package tar://C:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package
+51 silly lockFile f88ca0b3-1291-0-41063759778626263-tmp-tgz tar://c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376091291-0.41063759778626263\tmp.tgz
+52 silly lockFile f88ca0b3-1291-0-41063759778626263-tmp-tgz tar://c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376091291-0.41063759778626263\tmp.tgz
+53 silly lockFile 910cc6c7-rg-koa-less2-koa-less2-0-0-1-tgz https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz
+54 silly lockFile 910cc6c7-rg-koa-less2-koa-less2-0-0-1-tgz https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz
+55 silly lockFile 1ab28ee9-koa-less2-0-0-1 koa-less2@0.0.1
+56 silly lockFile 1ab28ee9-koa-less2-0-0-1 koa-less2@0.0.1
+57 silly lockFile d94d15c4-koa-less2 koa-less2@
+58 silly lockFile d94d15c4-koa-less2 koa-less2@
+59 silly resolved [ { name: 'koa-less2',
+59 silly resolved     version: '0.0.1',
+59 silly resolved     description: 'koa-less2，请与koa-join、koa-assets配合使用，',
+59 silly resolved     main: 'index.js',
+59 silly resolved     scripts: { test: 'make test' },
+59 silly resolved     devDependencies:
+59 silly resolved      { koa: '~0.8.0',
+59 silly resolved        should: '~1.2.2',
+59 silly resolved        mocha: '~1.12.0',
+59 silly resolved        supertest: '~0.7.1' },
+59 silly resolved     dependencies: { less: '*' },
+59 silly resolved     author: '',
+59 silly resolved     license: 'ISC',
+59 silly resolved     readme: '# koa-less2\n\n## koa-less2 简介\n\n基于koa-join的前端开发环境中间件，将本地的less文件编译成css后返回，兼容css combo请求。\n\n## 安装\n\nkoa 依赖支持 generator 的 Node 环境，准确来说，是 `node >= 0.11.9` 的环境。\n\n```\n$ npm install --save less\n```\n\n请务必使用`node --harmony`模式运行程序，例如：\n\n```\n$ node --harmony index.js\n```\n\n为了方便，可以将在你的.bash_profile中将`node`设置为默认启动`harmony`模式的别名：\n\n```\nalias node=\'node --harmony\'\n```\n\n\n## Example\n\n### index.js\n\n```\nvar koa = require(\'koa\');\nvar app = koa();\nvar join = require(\'koa-join\');\nvar assets = require(\'koa-assets\');\nvar less = require(\'koa-less2\');\n\napp.use(join());\n//放在koa-assets之前\napp.use(less({\n  pattern: /tm\\/detail-m\\/[\\d\\.]+\\/(.+.css)/,          //映射规则\n  replacement: \'/Users/xhowhy/dev/tm/detail-m/src/$1\', //本地替换\n  paths: [\'/Users/xhowhy/dev/tm/detail-m/src\']         //less的paths参数\n}));\napp.use(assets({\n  urls: [{\n    rule: /tm\\/detail-m\\/[\\d\\.]+/,\n    dest: \'/Users/xhowhy/dev/tm/detail-m/src\'\n  }]\n}));\n\napp.listen(80);\n\n```\n\n### 运行\n\n```\n$ node --harmony index.js #mac下监听80端口可能需要sudo权限\n```\n\n## License\n\n  MIT\n',
+59 silly resolved     readmeFilename: 'README.md',
+59 silly resolved     _id: 'koa-less2@0.0.1',
+59 silly resolved     _shasum: 'e14da68cc3b7c9968474219c435797060f9e341a',
+59 silly resolved     _from: 'koa-less2@',
+59 silly resolved     _resolved: 'https://registry.npmjs.org/koa-less2/-/koa-less2-0.0.1.tgz' } ]
+60 info install koa-less2@0.0.1 into D:\hichat2
+61 info installOne koa-less2@0.0.1
+62 info D:\hichat2\node_modules\koa-less2 unbuild
+63 info preuninstall koa-less2@0.0.1
+64 info uninstall koa-less2@0.0.1
+65 verbose true,D:\hichat2\node_modules,D:\hichat2\node_modules unbuild koa-less2@0.0.1
+66 info postuninstall koa-less2@0.0.1
+67 verbose tar unpack c:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package.tgz
+68 silly lockFile a6d85bc3-D-hichat2-node-modules-koa-less2 tar://D:\hichat2\node_modules\koa-less2
+69 verbose lock tar://D:\hichat2\node_modules\koa-less2 C:\Users\wly\AppData\Roaming\npm-cache\a6d85bc3-D-hichat2-node-modules-koa-less2.lock
+70 silly lockFile 1832c3d6-ache-koa-less2-0-0-1-package-tgz tar://c:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package.tgz
+71 verbose lock tar://c:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package.tgz C:\Users\wly\AppData\Roaming\npm-cache\1832c3d6-ache-koa-less2-0-0-1-package-tgz.lock
+72 silly gunzTarPerm modes [ '755', '644' ]
+73 silly gunzTarPerm extractEntry package.json
+74 silly gunzTarPerm extractEntry .npmignore
+75 silly gunzTarPerm extractEntry README.md
+76 silly gunzTarPerm extractEntry index.js
+77 silly lockFile a6d85bc3-D-hichat2-node-modules-koa-less2 tar://D:\hichat2\node_modules\koa-less2
+78 silly lockFile a6d85bc3-D-hichat2-node-modules-koa-less2 tar://D:\hichat2\node_modules\koa-less2
+79 silly lockFile 1832c3d6-ache-koa-less2-0-0-1-package-tgz tar://c:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package.tgz
+80 silly lockFile 1832c3d6-ache-koa-less2-0-0-1-package-tgz tar://c:\Users\wly\AppData\Roaming\npm-cache\koa-less2\0.0.1\package.tgz
+81 info preinstall koa-less2@0.0.1
+82 verbose readDependencies using package.json deps
+83 verbose readDependencies using package.json deps
+84 verbose cache add [ 'less@*', null ]
+85 verbose cache add name=undefined spec="less@*" args=["less@*",null]
+86 verbose parsed url { protocol: null,
+86 verbose parsed url   slashes: null,
+86 verbose parsed url   auth: null,
+86 verbose parsed url   host: null,
+86 verbose parsed url   port: null,
+86 verbose parsed url   hostname: null,
+86 verbose parsed url   hash: null,
+86 verbose parsed url   search: null,
+86 verbose parsed url   query: null,
+86 verbose parsed url   pathname: 'less@*',
+86 verbose parsed url   path: 'less@*',
+86 verbose parsed url   href: 'less@*' }
+87 verbose cache add name="less" spec="*" args=["less","*"]
+88 verbose parsed url { protocol: null,
+88 verbose parsed url   slashes: null,
+88 verbose parsed url   auth: null,
+88 verbose parsed url   host: null,
+88 verbose parsed url   port: null,
+88 verbose parsed url   hostname: null,
+88 verbose parsed url   hash: null,
+88 verbose parsed url   search: null,
+88 verbose parsed url   query: null,
+88 verbose parsed url   pathname: '*',
+88 verbose parsed url   path: '*',
+88 verbose parsed url   href: '*' }
+89 verbose addNamed [ 'less', '*' ]
+90 verbose addNamed [ null, '*' ]
+91 silly lockFile 3b72b43b-less less@*
+92 verbose lock less@* C:\Users\wly\AppData\Roaming\npm-cache\3b72b43b-less.lock
+93 silly addNameRange { name: 'less', range: '*', hasData: false }
+94 verbose url raw less
+95 verbose url resolving [ 'https://registry.npmjs.org/', './less' ]
+96 verbose url resolved https://registry.npmjs.org/less
+97 info trying registry request attempt 1 at 23:34:52
+98 http GET https://registry.npmjs.org/less
+99 http 200 https://registry.npmjs.org/less
+100 silly registry.get cb [ 200,
+100 silly registry.get   { date: 'Mon, 18 Aug 2014 15:34:55 GMT',
+100 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+100 silly registry.get     etag: '"CR3OPLCFWEV2PRHTBNDKTQBLF"',
+100 silly registry.get     'content-type': 'application/json',
+100 silly registry.get     'cache-control': 'max-age=60',
+100 silly registry.get     'content-length': '63886',
+100 silly registry.get     'accept-ranges': 'bytes',
+100 silly registry.get     via: '1.1 varnish',
+100 silly registry.get     age: '82',
+100 silly registry.get     'x-served-by': 'cache-ty67-TYO',
+100 silly registry.get     'x-cache': 'HIT',
+100 silly registry.get     'x-cache-hits': '1',
+100 silly registry.get     'x-timer': 'S1408376094.634233,VS0,VE709',
+100 silly registry.get     vary: 'Accept',
+100 silly registry.get     connection: 'close' } ]
+101 silly addNameRange number 2 { name: 'less', range: '*', hasData: true }
+102 silly addNameRange versions [ 'less',
+102 silly addNameRange   [ '1.0.10',
+102 silly addNameRange     '1.0.11',
+102 silly addNameRange     '1.0.14',
+102 silly addNameRange     '1.0.18',
+102 silly addNameRange     '1.0.19',
+102 silly addNameRange     '1.0.21',
+102 silly addNameRange     '1.0.32',
+102 silly addNameRange     '1.0.36',
+102 silly addNameRange     '1.0.5',
+102 silly addNameRange     '1.0.40',
+102 silly addNameRange     '1.0.41',
+102 silly addNameRange     '1.0.44',
+102 silly addNameRange     '1.1.0',
+102 silly addNameRange     '1.1.1',
+102 silly addNameRange     '1.1.2',
+102 silly addNameRange     '1.1.4',
+102 silly addNameRange     '1.1.5',
+102 silly addNameRange     '1.1.6',
+102 silly addNameRange     '1.2.0',
+102 silly addNameRange     '1.2.1',
+102 silly addNameRange     '1.2.2',
+102 silly addNameRange     '1.3.0',
+102 silly addNameRange     '1.3.1',
+102 silly addNameRange     '1.3.2',
+102 silly addNameRange     '1.3.3',
+102 silly addNameRange     '1.4.0-b1',
+102 silly addNameRange     '1.4.0-b2',
+102 silly addNameRange     '1.4.0-b3',
+102 silly addNameRange     '1.4.0-b4',
+102 silly addNameRange     '1.4.0',
+102 silly addNameRange     '1.4.1',
+102 silly addNameRange     '1.4.2',
+102 silly addNameRange     '1.5.0-b1',
+102 silly addNameRange     '1.5.0-b2',
+102 silly addNameRange     '1.5.0-b3',
+102 silly addNameRange     '1.5.0-b4',
+102 silly addNameRange     '1.5.0',
+102 silly addNameRange     '1.5.1',
+102 silly addNameRange     '1.6.0',
+102 silly addNameRange     '1.6.1',
+102 silly addNameRange     '1.6.2',
+102 silly addNameRange     '1.6.3',
+102 silly addNameRange     '1.7.0',
+102 silly addNameRange     '1.7.1',
+102 silly addNameRange     '1.7.3',
+102 silly addNameRange     '1.7.4' ] ]
+103 verbose addNamed [ 'less', '1.7.4' ]
+104 verbose addNamed [ '1.7.4', '1.7.4' ]
+105 silly lockFile 9a844466-less-1-7-4 less@1.7.4
+106 verbose lock less@1.7.4 C:\Users\wly\AppData\Roaming\npm-cache\9a844466-less-1-7-4.lock
+107 silly lockFile 66b0d82d-ry-npmjs-org-less-less-1-7-4-tgz https://registry.npmjs.org/less/-/less-1.7.4.tgz
+108 verbose lock https://registry.npmjs.org/less/-/less-1.7.4.tgz C:\Users\wly\AppData\Roaming\npm-cache\66b0d82d-ry-npmjs-org-less-less-1-7-4-tgz.lock
+109 verbose addRemoteTarball [ 'https://registry.npmjs.org/less/-/less-1.7.4.tgz',
+109 verbose addRemoteTarball   '1db03afd0d1b848d898d10d2690d79ee3834026d' ]
+110 info retry fetch attempt 1 at 23:34:54
+111 verbose fetch to= c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376094937-0.5180652218405157\tmp.tgz
+112 http GET https://registry.npmjs.org/less/-/less-1.7.4.tgz
+113 http 200 https://registry.npmjs.org/less/-/less-1.7.4.tgz
+114 silly lockFile 66b0d82d-ry-npmjs-org-less-less-1-7-4-tgz https://registry.npmjs.org/less/-/less-1.7.4.tgz
+115 silly lockFile 66b0d82d-ry-npmjs-org-less-less-1-7-4-tgz https://registry.npmjs.org/less/-/less-1.7.4.tgz
+116 silly lockFile 9a844466-less-1-7-4 less@1.7.4
+117 silly lockFile 9a844466-less-1-7-4 less@1.7.4
+118 silly lockFile 3b72b43b-less less@*
+119 silly lockFile 3b72b43b-less less@*
+120 verbose about to build D:\hichat2\node_modules\koa-less2
+121 info D:\hichat2\node_modules\koa-less2 unbuild
+122 info preuninstall koa-less2@0.0.1
+123 info uninstall koa-less2@0.0.1
+124 verbose true,D:\hichat2\node_modules,D:\hichat2\node_modules unbuild koa-less2@0.0.1
+125 info postuninstall koa-less2@0.0.1
+126 error Error: shasum check failed for c:\Users\wly\AppData\Local\Temp\npm-9516-xxxLJwdR\1408376094937-0.5180652218405157\tmp.tgz
+126 error Expected: 1db03afd0d1b848d898d10d2690d79ee3834026d
+126 error Actual:   aab585d263509e0da455f0ff3f4326948b57639a
+126 error     at D:\Program Files\nodejs\node_modules\npm\node_modules\sha\index.js:38:8
+126 error     at ReadStream.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\sha\index.js:85:7)
+126 error     at ReadStream.EventEmitter.emit (events.js:129:20)
+126 error     at _stream_readable.js:898:16
+126 error     at process._tickCallback (node.js:343:11)
+127 error If you need help, you may report this *entire* log,
+127 error including the npm and node versions, at:
+127 error     <http://github.com/npm/npm/issues>
+128 error System Windows_NT 6.1.7601
+129 error command "D:\\Program Files\\nodejs\\\\node.exe" "D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save" "koa-less2"
+130 error cwd D:\hichat2
+131 error node -v v0.11.13
+132 error npm -v 1.4.9
+133 verbose exit [ 1, true ]
