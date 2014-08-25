@@ -7,6 +7,8 @@ Web IM工具HiChat v2——开发中
 1. Openfire
 2. node.js (0.11+)
 
+先用`npm install`安装所有依赖包
+
 使用命令`node --harmony app.js`启动，然后在`localhost:3000/app/index.html`下看效果
 
 * 单聊——RFC3921（√）
