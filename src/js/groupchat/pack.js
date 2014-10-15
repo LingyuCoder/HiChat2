@@ -71,6 +71,7 @@ define(function(require, exports, module) {
 			var roomUser;
 			var $item;
 			$item = $presence.find("item");
+			console.log(aPresence.xml());
 			var roomUser = new RoomUser($presence.attr("from"),
 				$item.attr("jid"),
 				$item.attr("affiliation"),

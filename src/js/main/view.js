@@ -10,6 +10,7 @@ define(function(require, exports, module) {
 	require("chat/view");
 	require("status/view");
 	require("groupchat/view");
+	require("rtc/view");
 	require("./main.css");
 
 	var $el = $("#J_main");

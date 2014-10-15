@@ -38,7 +38,6 @@ define(function(require, exports, module) {
 			});
 		},
 		"connect/groupchat/presence/receive": function(event, presence) {
-			console.log(presence.xml());
 			presence = groupchatPack.parsePresence(presence);
 			var type = presence.type;
 			if (type === "available") {

@@ -3,6 +3,7 @@ define(function(require, exports, module) {
 	var $ = require("jquery");
 	var RESOURCE = require("resource");
 	var timeformat = require("timeformat");
+	var alertify = require("alertify");
 
 	var model = require("../mods/model");
 	var Message = require("../mods/message");
@@ -12,6 +13,8 @@ define(function(require, exports, module) {
 
 	var $chat = $('<div class="g_chat_dlg">' + '<div class="g_chat_info">' + '<img class="u_avatar" src="' + RESOURCE.DEFAULT_AVATAR + '"/>' + '<div class="u_status"></div>' + '<div class="u_nick"></div>' + '</div>' + '<textarea class="u_msg_ipt"></textarea>' + '</div>');
 	var $msgTpl = $('<div class="clearfix g_line"><span class="u_msg"></span></div>');
+
+
 
 	function initChatDialog(detail) {
 		if ($("#J_chat_" + detail.jid + "_" + detail.domain).length > 0) {
@@ -57,6 +60,12 @@ define(function(require, exports, module) {
 				$info.find(".u_nick").text(detail.personalInfo.nickname || detail.toString());
 				$widget.find(".ui-dialog-titlebar").html($info);
 				$widget.find(".ui-dialog-buttonpane").prepend($textarea);
+
+				$widget.find(".ui-dialog-buttonpane").append('<div class="sendFilePanel"><input type="file" class="fileIpt"></div>');
+
+				$widget.find('.fileIpt').change(function() {
+					Event.trigger("rtc/sendFile", [this, detail]);
+				});
 			}
 		});
 		$dlg.attr("id", "J_chat_" + detail.jid + "_" + detail.domain);
@@ -92,7 +101,7 @@ define(function(require, exports, module) {
 		var from = message.from;
 		var to = message.to;
 		var $dlg;
-		var self = from.toString() === model.get("self").toString();
+		var self = from.toString() === model.self.toString();
 		$dlg = self ? $("#J_chat_" + to.jid + "_" + to.domain) : $("#J_chat_" + from.jid + "_" + from.domain);
 		if ($dlg.length > 0) {
 			var $message = $msgTpl.clone();
@@ -108,6 +117,8 @@ define(function(require, exports, module) {
 			Event.trigger("friend/message/remind", [from, history[fromJid].length]);
 		}
 	}
+
+
 
 	Event.on({
 		"chat/open": function(event, detail) {

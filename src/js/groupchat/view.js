@@ -29,6 +29,7 @@ define(function(require, exports, module) {
 	function drawRoomDetail(room) {
 		var nick = model.detail.personalInfo.nickname || model.self.jid;
 		var $room = $("#J_gc_" + room.toSafeString());
+		console.log(model.self);
 		var roomUser = new RoomUser(room.toString() + "/" + nick);
 		var $joinBtn = $('<span class="u_btn u_join">加入</span>').button().on("click", function() {
 			if ($("#J_gc_dlg_" + room.toSafeString()).length === 0) {
@@ -40,13 +41,18 @@ define(function(require, exports, module) {
 								self: roomUser,
 								roomUsers: []
 							};
-							console.log(model.joinedRooms);
 							drawRoomDialog(roomUser);
 							Event.trigger("connect/groupchat/joinRoom", [roomUser, psw]);
 						}
 					});
 				} else {
-					Event.trigger("connect/groupchat/joinRoom", [room, defaultNick]);
+					model.joinedRooms[roomUser.room.toString()] = {
+						room: room,
+						self: roomUser,
+						roomUsers: []
+					};
+					drawRoomDialog(roomUser);
+					Event.trigger("connect/groupchat/joinRoom", [roomUser]);
 				}
 			}
 		});
@@ -105,6 +111,8 @@ define(function(require, exports, module) {
 		var room = roomUser.room;
 		var $roomUsers = $("#J_gc_dlg_" + room.toSafeString() + " .m_user");
 		if ($roomUsers.length > 0) {
+			console.log(roomUser);
+			console.log(roomUser.user.toSafeString());
 			var $user = $("#J_gc_" + roomUser.user.toSafeString());
 			var $affi;
 			if ($user.length === 0) {
@@ -137,7 +145,7 @@ define(function(require, exports, module) {
 		var joinedRoom = model.joinedRooms[room.toString()];
 		if ($room.length > 0) {
 			var $msg = $msgTpl.clone();
-			$msg.find(".u_msg").html('<p>' + gcMsg.toString() + '</p>').addClass(joinedRoom.self.nickname === roomUser.nickname ? "u_self" : "u_other");
+			$msg.find(".u_msg").html('<p><strong>' + roomUser.nickname + ': ' + '</strong>' + gcMsg.toString() + '</p>').addClass(joinedRoom.self.nickname === roomUser.nickname ? "u_self" : "u_other");
 			$room.find(".m_msg").append($msg);
 		}
 	}
