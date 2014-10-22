@@ -34,11 +34,11 @@
 		<div>
 			<select id="J_status" class="u_status_sel"></select>
 			<ul id="J_tool">
-				<li class="u_exit iconfont">&#xe601;</li>
-				<li class="u_history iconfont">&#xe604;</li>
-				<li class="u_search iconfont">&#xe600;</li>
+				<li class="u_exit iconfont">&#xe603;</li>
+				<li class="u_files iconfont">&#xe604;</li>
+				<li class="u_search iconfont">&#xe601;</li>
 				<li class="u_config iconfont">&#xe602;</li>
-				<li class="u_self iconfont">&#xe603;</li>
+				<li class="u_self iconfont">&#xe607;</li>
 			</ul>
 		</div>
 		
@@ -152,6 +152,10 @@
 		<input class="J_f_find_id" type="text"/>
 		<div class="J_f_find_rst g_find_rst"></div>
 	</div>
+	
+	<div id="J_files">
+		<ul></ul>
+	</div>
 
 	<script type="text/javascript" src="../src/js/widgets/seajs.js"></script>
 	<script type="text/javascript" src="../src/js/widgets/seajs-css.js"></script>
@@ -165,14 +169,14 @@
 				"ui": "widgets/jquery-ui-1.10.4.custom.js",
 				"alertify": "widgets/alertify.js",
 				"timeformat": "widgets/timeformat.js",
-				"skyrtc": "widgets/skyrtc.js",
+				"peertc": "widgets/peertc.js",
 				"connection": "common/connection",
 				"config": "common/config",
 				"event": "common/event",
 				"resource": "common/resource",
 				"util": "common/util"
 			},
-			preload: ["jquery", "ui", "jsjac", "alertify", "timeformat", "skyrtc"]
+			preload: ["jquery", "ui", "jsjac", "alertify", "timeformat", "peertc"]
 		});
 		seajs.use("index.js");
 	</script>

@@ -50,6 +50,10 @@ define(function(require, exports, module) {
 		Event.trigger("connect/logout");
 	});
 
+	$toolbar.find(".u_files").on("click", function(event) {
+		Event.trigger("files/show");
+	});
+
 	$("#J_tabs").tabs();
 
 	Event.on({

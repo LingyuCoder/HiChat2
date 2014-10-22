@@ -1,0 +1,24 @@
+#J_files {
+	ul {
+		padding: 0;
+		margin: 0;
+		li {
+			list-style: none;
+			overflow: hidden;
+			&.sending {
+				.result {
+					color: red;
+				}
+			}
+			&.sended {
+				.result {
+					color: green;
+				}
+			}
+			.result {
+				float: right;
+				font-weight: bolder;
+			}
+		}
+	}
+}
