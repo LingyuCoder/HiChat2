@@ -8,6 +8,7 @@ define(function(require, exports, module) {
 
 	var model = require("../mods/model");
 	var RoomUser = require("../mods/roomuser");
+	var GroupChatMessage = require('../mods/groupchatmessage');
 
 	var $el = $("#J_groupchat");
 	var $roomTpl = $('<div class="g_room"><div class="u_name"></div></div>');
@@ -29,7 +30,6 @@ define(function(require, exports, module) {
 	function drawRoomDetail(room) {
 		var nick = model.detail.personalInfo.nickname || model.self.jid;
 		var $room = $("#J_gc_" + room.toSafeString());
-		console.log(model.self);
 		var roomUser = new RoomUser(room.toString() + "/" + nick);
 		var $joinBtn = $('<span class="u_btn u_join">加入</span>').button().on("click", function() {
 			if ($("#J_gc_dlg_" + room.toSafeString()).length === 0) {
@@ -87,7 +87,7 @@ define(function(require, exports, module) {
 				click: function() {
 					var content = $.trim($textarea.val());
 					if (content) {
-						Event.trigger("connect/groupchat/message/send", [roomUser, content]);
+						Event.trigger("connect/groupchat/message/send", [new GroupChatMessage(roomUser, content, new Date())]);
 						$textarea.val("");
 					}
 				}
@@ -111,8 +111,6 @@ define(function(require, exports, module) {
 		var room = roomUser.room;
 		var $roomUsers = $("#J_gc_dlg_" + room.toSafeString() + " .m_user");
 		if ($roomUsers.length > 0) {
-			console.log(roomUser);
-			console.log(roomUser.user.toSafeString());
 			var $user = $("#J_gc_" + roomUser.user.toSafeString());
 			var $affi;
 			if ($user.length === 0) {
@@ -143,10 +141,19 @@ define(function(require, exports, module) {
 		var room = roomUser.room;
 		var $room = $("#J_gc_dlg_" + room.toSafeString());
 		var joinedRoom = model.joinedRooms[room.toString()];
+		var $content;
 		if ($room.length > 0) {
 			var $msg = $msgTpl.clone();
-			$msg.find(".u_msg").html('<p><strong>' + roomUser.nickname + ': ' + '</strong>' + gcMsg.toString() + '</p>').addClass(joinedRoom.self.nickname === roomUser.nickname ? "u_self" : "u_other");
-			$room.find(".m_msg").append($msg);
+			if (gcMsg.message.type === 'report') {
+				var $msgTmp = $('<p><strong>' + roomUser.nickname + ': ' + '</strong><div class="u_chart"></div></p>');
+				$msg.find(".u_msg").append($msgTmp).addClass(joinedRoom.self.nickname === roomUser.nickname ? "u_self" : "u_other");;
+				$room.find(".m_msg").append($msg);
+				Event.trigger('report/draw', [$msg.find('.u_chart').get()[0], gcMsg.message.content]);
+			} else {
+				$msg.find(".u_msg").html('<p><strong>' + roomUser.nickname + ': ' + '</strong>' + gcMsg.toString() + '</p>').addClass(joinedRoom.self.nickname === roomUser.nickname ? "u_self" : "u_other");
+				$room.find(".m_msg").append($msg);
+			}
+			
 		}
 	}
 
@@ -196,12 +203,16 @@ define(function(require, exports, module) {
 
 		var $cfgPanel = $('<div class="m_gc_cfg"></div>');
 		$cfgPanel.append('<span class="iconfont u_cfg u_setNick">&#xe603;</span>');
+		$cfgPanel.append('<span class="iconfont u_cfg u_sharereport">&#xe60b;</span>');
 		$cfgPanel.find(".u_setNick").click(function(event) {
 			alertify.prompt("请设置新的昵称：", function(done, nickname) {
 				if (done && nickname) {
 					Event.trigger("connect/groupchat/changeNickname", [self, nickname]);
 				}
 			});
+		});
+		$cfgPanel.find(".u_sharereport").click(function(event) {
+			Event.trigger('report/show', [self]);
 		});
 		$buttonPanel.prepend($cfgPanel);
 	}

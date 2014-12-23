@@ -129,11 +129,11 @@ define(function(require, exports, module) {
 			aPresence.setTo(roomUser.room.toString()).setType("unavailable");
 			return aPresence;
 		},
-		"sendMessage": function(roomUser, message) {
+		"sendMessage": function(gcMsg) {
 			var aMessage = new JSJaCMessage();
 			var bodyNode = aMessage.buildNode("body");
-			aMessage.setTo(roomUser.room.toString()).setType("groupchat");
-			bodyNode.appendChild(document.createTextNode(message));
+			aMessage.setTo(gcMsg.roomUser.room.toString()).setType("groupchat");
+			bodyNode.appendChild(document.createTextNode(JSON.stringify(gcMsg.message)));
 			aMessage.appendNode(bodyNode);
 			return aMessage;
 		},
@@ -142,6 +142,7 @@ define(function(require, exports, module) {
 			var $subject = $message.find("subject");
 			var time = $message.find("delay");
 			var from = $message.attr("from");
+			var parsed;
 			if (time.length > 0) {
 				time = new Date();
 			} else {
@@ -154,9 +155,13 @@ define(function(require, exports, module) {
 					room: new Room(from)
 				};
 			} else {
+				parsed = aMessage.getBody();
+				try {
+					parsed = JSON.parse(parsed);
+				} catch (e) {}
 				return {
 					type: "message",
-					message: new GroupchatMessage(from, aMessage.getBody(), time)
+					message: new GroupchatMessage(from, parsed, time)
 				};
 			}
 		},

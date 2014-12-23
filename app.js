@@ -21,17 +21,50 @@ app.use(less({
 app.use(serve('.'));
 app.listen(3000);
 
+
+/******peertc server******/
 var express = require('express');
 var path = require("path");
 var app = express();
 var server = require('http').createServer(app);
 require('peertc').listen(server);
 
-var port = process.env.PORT || 2999;
-server.listen(port);
+server.listen(2999);
 
-app.use(express.static(path.join(__dirname, 'build')));
+/******skyrct server******/
+var groupapp = express();
+var groupserver = require('http').createServer(groupapp);
+var skyrtc = require('skyrtc').listen(groupserver);
+groupserver.listen(2998);
 
-app.get('/', function(req, res) {
-	res.sendfile(__dirname + '/demo/index.html');
+skyrtc.rtc.on('new_connect', function(socket) {
+	console.log('创建新连接');
+});
+
+skyrtc.rtc.on('remove_peer', function(socketId) {
+	console.log(socketId + "用户离开");
+});
+
+skyrtc.rtc.on('new_peer', function(socket, room) {
+	console.log("新用户" + socket.id + "加入房间" + room);
+});
+
+skyrtc.rtc.on('socket_message', function(socket, msg) {
+	console.log("接收到来自" + socket.id + "的新消息：" + msg);
+});
+
+skyrtc.rtc.on('ice_candidate', function(socket, ice_candidate) {
+	console.log("接收到来自" + socket.id + "的ICE Candidate");
+});
+
+skyrtc.rtc.on('offer', function(socket, offer) {
+	console.log("接收到来自" + socket.id + "的Offer");
+});
+
+skyrtc.rtc.on('answer', function(socket, answer) {
+	console.log("接收到来自" + socket.id + "的Answer");
+});
+
+skyrtc.rtc.on('error', function(error) {
+	console.log("发生错误：" + error.message);
 });

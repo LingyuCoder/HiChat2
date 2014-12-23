@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="../src/css/jqueryui/jquery-ui-1.10.4.custom.css">
 	<link rel="stylesheet" type="text/css" href="../src/css/alertify/alertify-core.css">
 	<link rel="stylesheet" type="text/css" href="../src/css/alertify/alertify-bootstrap.css">
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8xY8cmmGGNoUhoFa25rLFpjp"></script>
 </head>
 <body>
 	<div id="J_login">
@@ -39,11 +40,24 @@
 				<li class="u_search iconfont">&#xe601;</li>
 				<li class="u_config iconfont">&#xe602;</li>
 				<li class="u_self iconfont">&#xe607;</li>
+				<li class="u_game iconfont">&#xe60a;</li>
 			</ul>
 		</div>
 		
 	</div>
 	
+	<div id="J_fivechess">
+		<iframe src="about:blank" frameborder=0></iframe>
+	</div>
+
+	<div id="J_report">
+		<div class="left_ctn">
+			<textarea class="datasource"></textarea>
+			<button class="send ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">发送</button>
+			<button class="show ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">预览</button>
+		</div>
+		<div class="report"></div>
+	</div>
 	
 	<div id="J_self_detail">
 		<div class="J_tabs">
@@ -170,13 +184,14 @@
 				"alertify": "widgets/alertify.js",
 				"timeformat": "widgets/timeformat.js",
 				"peertc": "widgets/peertc.js",
+				"echarts": "widgets/echarts/echarts-all.js",
 				"connection": "common/connection",
 				"config": "common/config",
 				"event": "common/event",
 				"resource": "common/resource",
 				"util": "common/util"
 			},
-			preload: ["jquery", "ui", "jsjac", "alertify", "timeformat", "peertc"]
+			preload: ["jquery", "ui", "jsjac", "alertify", "timeformat", "peertc", "echarts"]
 		});
 		seajs.use("index.js");
 	</script>

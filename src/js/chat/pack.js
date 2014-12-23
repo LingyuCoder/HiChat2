@@ -9,7 +9,7 @@ define(function(require, exports, module) {
 		sendMessage: function(message) {
 			var aMessage = new JSJaCMessage();
 			aMessage.setTo(message.to.toString());
-			aMessage.setBody(message.message);
+			aMessage.setBody(JSON.stringify(message.message));
 			aMessage.setType("chat");
 			return aMessage;
 		},
@@ -22,7 +22,13 @@ define(function(require, exports, module) {
 			var time = $delay.length > 0 ? new Date($delay.attr("stamp")) : new Date();
 			var result;
 			if ($body.length > 0) {
-				result = new Message($body.text(), from, to, time);
+				var parsedBody;
+				try {
+					parsedBody = JSON.parse($body.text());
+				} catch(e) {
+					parsedBody = $body.text();
+				}
+				result = new Message(parsedBody, from, to, time);
 			} else {
 				$.each(["active", "inactive", "composing"], function(index, status) {
 					if ($message.find(status).length > 0) {

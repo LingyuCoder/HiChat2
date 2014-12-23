@@ -11,6 +11,8 @@ define(function(require, exports, module) {
 	require("status/view");
 	require("groupchat/view");
 	require("rtc/view");
+	require("fivechess/view");
+	require("report/view");
 	require("./main.css");
 
 	var $el = $("#J_main");
@@ -52,6 +54,10 @@ define(function(require, exports, module) {
 
 	$toolbar.find(".u_files").on("click", function(event) {
 		Event.trigger("files/show");
+	});
+
+	$toolbar.find(".u_game").on("click", function(event) {
+		Event.trigger("chess/show");
 	});
 
 	$("#J_tabs").tabs();

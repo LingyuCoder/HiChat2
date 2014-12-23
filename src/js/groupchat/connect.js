@@ -57,8 +57,8 @@ define(function(require, exports, module) {
 		"connect/groupchat/leaveRoom": function(event, roomUser) {
 			connection.send(groupchatPack.leaveRoom(roomUser));
 		},
-		"connect/groupchat/message/send": function(event, roomUser, message) {
-			connection.send(groupchatPack.sendMessage(roomUser, message));
+		"connect/groupchat/message/send": function(event, gcMsg) {
+			connection.send(groupchatPack.sendMessage(gcMsg));
 		},
 		"connect/groupchat/message/receive": function(event, aMessage) {
 			var message = groupchatPack.parseMessage(aMessage);

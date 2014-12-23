@@ -9,6 +9,7 @@ define(function(require, exports, module) {
 	var localStream;
 	var model = require('../mods/model');
 	var Message = require('../mods/message');
+	var mapId = 0;
 
 	require('./connect');
 	require('./chat.css');
@@ -67,10 +68,63 @@ define(function(require, exports, module) {
 				$widget.find('.ui-dialog-titlebar').html($info);
 				$widget.find('.ui-dialog-buttonpane').prepend($textarea);
 
-				$widget.find('.ui-dialog-buttonpane').append('<div id="rtcPanel_' + detail.toSafeString() + '"><input type="file" style="display: none" class="u_fileIpt" id="u_sendFileBtn_' + detail.toSafeString() + '"><label class="iconfont u_chat_helper u_sendFile_btn" for="u_sendFileBtn_' + detail.toSafeString() + '">&#xe604;</label><span class="iconfont u_chat_helper u_video_btn">&#xe606;</span></div>');
+				$widget.find('.ui-dialog-buttonpane').append('<div id="rtcPanel_' + detail.toSafeString() + '"><input type="file" style="display: none" class="u_fileIpt" id="u_sendFileBtn_' + detail.toSafeString() + '"><label class="iconfont u_chat_helper u_sendFile_btn" for="u_sendFileBtn_' + detail.toSafeString() + '">&#xe604;</label><span class="iconfont u_chat_helper u_video_btn">&#xe606;</span><input type="file" style="display: none" class="u_imageIpt" id="u_sendImageBtn_' + detail.toSafeString() + '"><label class="iconfont u_chat_helper u_sendImage_btn" for="u_sendImageBtn_' + detail.toSafeString() + '">&#xe608;</label><span class="iconfont u_chat_helper u_location_btn">&#xe609;</span></div>');
 
 				$widget.find('.u_fileIpt').change(function() {
 					Event.trigger('rtc/file/send', [detail.toSafeString(), this]);
+				});
+				$widget.find('.u_location_btn').click(function() {
+					if (navigator.geolocation) {
+
+						navigator.geolocation.getCurrentPosition(getSuccess, getError, {
+							enableHighAccuracy: true,
+							timeout: 5000,
+							maximumAge: 0
+						});
+
+						function getSuccess(position) {
+							var message = new Message({
+								"type": "location",
+								"latitude": position.coords.latitude,
+								"longitude": position.coords.longitude
+							}, model.get('self').toString(), detail.toString(), new Date());
+							Event.trigger('connect/message/send', [message]);
+							drawMessage(message);
+						}
+
+						function getError(error) {
+							switch (error.code) {
+								case error.TIMEOUT:
+									console.log('超时');
+									break;
+								case error.PERMISSION_DENIED:
+									console.log('用户拒绝提供地理位置');
+									break;
+								case error.POSITION_UNAVAILABLE:
+									console.log('地理位置不可用');
+									break;
+								default:
+									break;
+							}
+						}
+					}
+				});
+				$widget.find('.u_imageIpt').change(function() {
+					var that = this;
+					var file = that.files[0];
+					if (file) {
+						var reader = new window.FileReader(file);
+						reader.readAsDataURL(file);
+						reader.onload = function(event, text) {
+							var message = new Message({
+								"type": "image",
+								"content": event.target.result
+							}, model.get('self').toString(), detail.toString(), new Date());
+							Event.trigger('connect/message/send', [message]);
+							drawMessage(message);
+						};
+					}
+
 				});
 				$widget.find('.u_video_btn').click(function() {
 					var $this = $(this);
@@ -122,9 +176,25 @@ define(function(require, exports, module) {
 		if ($dlg.length > 0) {
 			var $message = $msgTpl.clone();
 			var $ctn = $message.find('span');
-			$ctn.html('<p>' + timeformat(message.time, 'hh:mm:ss') + '：' + '</p>' + '<p>' + message.message + '</p>');
+			if (message.message.type === 'image') {
+				$ctn.html('<p>' + timeformat(message.time, 'hh:mm:ss') + '：' + '</p>' + '<img width=300 src="' + message.message.content + '"/>');
+				$dlg.append($message);
+			} else if (message.message.type === 'location') {
+				console.log(message.message);
+				$ctn.html('<p>' + timeformat(message.time, 'hh:mm:ss') + '：' + '</p>' + '<p><div class="u_msg_loc" id="baidu_map_' + mapId + '"></div></p>');
+				$dlg.append($message);
+				var map = new BMap.Map('baidu_map_' + mapId);
+				var point = new BMap.Point(message.message.longitude, message.message.latitude);
+				map.centerAndZoom(point, 13);
+				map.centerAndZoom(point, 17);
+				map.addOverlay(new BMap.Marker(point));
+				mapId++;
+			} else {
+				$ctn.html('<p>' + timeformat(message.time, 'hh:mm:ss') + '：' + '</p>' + '<p>' + message.message + '</p>');
+				$dlg.append($message);
+			}
+
 			$ctn.addClass('u_msg').addClass(self ? 'u_self' : 'u_other');
-			$dlg.append($message);
 			var dlg = $dlg.get()[0];
 			dlg.scrollTop = dlg.scrollHeight;
 		} else {

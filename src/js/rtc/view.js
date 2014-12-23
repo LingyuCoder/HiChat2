@@ -66,7 +66,7 @@ define(function(require, exports, module) {
 
 	Event.on({
 		'login/success': function(event) {
-			peertc = Peertc('ws://10.210.3.169:2999', model.self.toSafeString());
+			peertc = Peertc('ws://localhost:2999', model.self.toSafeString());
 			peertc.on('init', function() {
 				console.log('inited');
 			}).on('open', function(id) {
