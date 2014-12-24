@@ -22,3 +22,4 @@ Web IM工具HiChat v2——开发中
 * 数据表单——XEP0004（×）
 * 文件传输——webrtc datachannel（√）
 * 视频聊天——webrtc（√）
+* 图片传输——webrtc（√）
